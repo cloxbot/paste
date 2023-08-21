@@ -1,0 +1,169 @@
+:root {
+    --contexify-item-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeArrow-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-bgColor: rgba(118, 1, 211, 0.04) !important;
+    --contexify-zIndex: 666;
+    --contexify-menu-minWidth: 220px !important;
+    --contexify-menu-padding: 6px !important;
+    --contexify-menu-radius: 6px !important;
+    --contexify-menu-bgColor: #fff !important;
+    --contexify-menu-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1) !important, 2px 4px 4px rgba(0, 0, 0, 0.1) !important, 3px 6px 6px rgba(0, 0, 0, 0.1) !important;
+    --contexify-separator-color: rgba(0, 0, 0, 0.2) !important;
+    --primary: #151515 !important;
+    --primary-hover: #202020 !important;
+    --font: "Sono", sans-serif !important;
+    --background: #151515 !important;
+    --background-textarea: #101010 !important;
+    --textarea-border: #0033ff !important;
+    --text-color: #ffffff !important;
+    --text-color-hover: #444444 !important;
+}
+
+html, body {
+    width: 100% !important;
+    height: 100% !important;
+    font-family: var(--font) !important;
+    background-color: var(--background) !important;
+    color: var(--text-color) !important;
+}
+
+* {
+    margin: 0 !important;
+    border: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    height: 80vh !important;
+}
+
+.button {
+    background-color: #141414 !important;
+    border: 2px solid #0033ff !important;
+    font-weight: 600 !important;
+    font-family: "Sono" !important;
+    border-radius: 50px !important;
+    display: flex !important;
+    cursor: pointer !important;
+    height: 45px !important;
+    width: 130px !important;
+    color: White !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-image: url(https://static.cracked.to/images/bg1.gif) !important;
+    background-repeat: repeat !important;
+    margin-bottom: 20px !important;
+}
+
+.button:hover {
+    background-color: var(--primary-hover) !important;
+    color: var(--text-color-hover) !important;
+}
+
+body {
+    background-color: var(--background) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+    gap: 1rem !important;
+}
+
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 5% !important;
+    background-color: var(--background) !important;
+    border-bottom: 2px solid var(--textarea-border) !important;
+    height: 80px !important; /* Making the navbar bigger */
+}
+
+.logo img {
+    height: 60px !important;
+    width: auto !important;
+    margin-right: 10px !important;
+}
+
+.logo-text {
+    font-family: 'Pacifico', cursive !important;
+    font-size: 28px !important;
+    margin-left: 10px !important;
+    vertical-align: middle !important;
+    color: var(--text-color) !important;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+}
+
+input {
+    border: none !important;
+    outline: none !important;
+    padding: 0 10px !important;
+    background: none !important;
+    font-size: 1.1rem !important;
+    line-height: 40px !important;
+    color: #fff !important;
+}
+
+.input-container input {
+    width: 100% !important;
+    padding: 10px !important;
+    border: 2px solid #0033ff !important;
+    border-radius: 6px !important;
+    font-size: 16px !important;
+}
+
+form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+footer {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 10px 0 !important;
+    background-color: var(--background) !important;
+    color: var(--text-color) !important;
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+footer a {
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+    transition: color 0.3s !important;
+    color: #1CCCE5 !important;
+    text-shadow: 0px 0px 4px #1CCCE5 !important;
+    background-image: url(https://static.cracked.to/images/bg1.gif) !important;
+    background-repeat: repeat !important;
+}
+
+footer a:hover {
+    color: var(--text-color-hover) !important;
+
+
+.register-prompt  {
+    font-size: 18px !important; /* Increase the size */
+    color: #1CCCE5 !important; /* Set a distinct color */
+    cursor: pointer !important; /* Hand cursor for interactive elements */
+    transition: color 0.3s !important; /* Transition for smooth color change */
+    text-decoration: none   !important; /* Underline to hint it's clickable */
+}
+
+.register-prompt:hover {
+    color: var(--text-color-hover) !important; /* Change color on hover */
+}
+

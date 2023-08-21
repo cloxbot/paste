@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pastes</title>
+    <link rel="stylesheet" href="/styles/my-pastes.css">
+</head>
+<body>
+
+  <%- include('./partials/navbar', { isAuthenticated: isAuthenticated }); %>
+
+<div class="container">
+    <h2>My Pastes</h2>
+    <table class="pastelist">
+        <thead>
+            <tr class="toprow">
+                <th>Paste</th>
+                <th>Views</th>
+                <th class="td-time">Creation Time</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% pastes.forEach(paste => { %>
+            <tr>
+                <td><a href="/view/<%= paste._id %>"><%= paste.name %></a></td>
+                <td><%= paste.views %></td>
+                <td class="td-time"><%= formatTimeAgo(paste.createdAt) %></td>
+                <td><a title="Delete Paste" class="remove-btn" onclick="remove('<%= paste._id %>');">
+    <img src="https://paste.fo/assets/svg/trash-can-solid.svg">
+</a>
+
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+
+              <div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="/my-pastes?page=<%= currentPage - 1 %>">Prev</a>
+    <% } %>
+    
+    <% for (let i = 1; i <= totalPages; i++) { %>
+        <% if (i === currentPage) { %>
+            <span class="active"><%= i %></span>
+        <% } else { %>
+            <a href="/my-pastes?page=<%= i %>"><%= i %></a>
+        <% } %>
+    <% } %>
+    
+    <% if (currentPage < totalPages) { %>
+        <a href="/my-pastes?page=<%= currentPage + 1 %>">Next</a>
+    <% } %>
+</div>
+
+<script>
+    function remove(pasteId) {
+        // Logic to delete the paste
+    }
+</script>
+
+              <style>
+                :root {
+    --contexify-item-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeArrow-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-bgColor: rgba(118, 1, 211, 0.04) !important;
+    --contexify-zIndex: 666;
+    --contexify-menu-minWidth: 220px !important;
+    --contexify-menu-padding: 6px !important;
+    --contexify-menu-radius: 6px !important;
+    --contexify-menu-bgColor: #fff !important;
+    --contexify-menu-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1) !important, 2px 4px 4px rgba(0, 0, 0, 0.1) !important, 3px 6px 6px rgba(0, 0, 0, 0.1) !important;
+    --contexify-separator-color: rgba(0, 0, 0, 0.2) !important;
+    --primary: #151515 !important;
+    --primary-hover: #202020 !important;
+    --font: "Sono", sans-serif !important;
+    --background: #151515 !important;
+    --background-textarea: #101010 !important;
+    --textarea-border: #0033ff !important;
+    --text-color: #ffffff !important;
+    --text-color-hover: #444444 !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+                body {
+    background: var(--background); /* Adjust this to your site's background */
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #1d1e3a;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+}
+
+.pastelist {
+    width: 100%;
+    border-collapse: none;
+}
+
+.pastelist thead .toprow {
+    background-color: #333;
+    color: #fff;
+}
+
+.pastelist tr {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.pastelist td, .pastelist th {
+    padding: 10px 15px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.remove-btn {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.remove-btn img {
+    width: 20px;
+}
+
+                /* ... existing styles ... */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    color:white !important;
+}
+
+.pagination a, .pagination span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: gray;
+}
+
+.pagination .active {
+    background-color: #333;
+    color: white;
+    border: 1px solid #333;
+}
+
+  .pastelist td a {
+    text-decoration: none;  /* Remove underline */
+    color: white;           /* Change color to white */
+}
+
+.pastelist td a:hover {
+    color: #ccc;            /* Change color to light grey on hover for better UX */
+}
+
+              </style>
+
+
+<script>
+    function remove(pasteId) {
+        fetch(`/delete/${pasteId}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                alert('Paste deleted successfully!');
+                location.reload();
+            } else {
+                alert('Error deleting paste!');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error deleting paste!');
+        });
+    }
+</script>
+
+</body>
+</html>

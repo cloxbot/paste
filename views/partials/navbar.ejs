@@ -1,0 +1,40 @@
+<!-- views/profile.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/profile.css">
+    <title>Profile</title>
+</head>
+<body>
+
+
+<header>
+            <a class="logo" href="/">
+    <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png">
+    <span class="logo-text">Clox Paste</span>
+</a>
+
+<div class="nav-links">
+<% if (!isAuthenticated) { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+<% } else { %>
+   <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> <!-- Check if user is an admin -->
+        <a href="/admin/dashboard">Admin Dashboard</a>
+    <% } %>
+    <a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a>
+   
+    <a href="/logout">Logout</a>
+<% } %>
+</div>
+
+
+
+            
+        </header>
+
+
+  </body>

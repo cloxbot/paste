@@ -1,0 +1,165 @@
+:root {
+    --contexify-item-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeArrow-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-bgColor: rgba(118, 1, 211, 0.04) !important;
+    --contexify-zIndex: 666;
+    --contexify-menu-minWidth: 220px !important;
+    --contexify-menu-padding: 6px !important;
+    --contexify-menu-radius: 6px !important;
+    --contexify-menu-bgColor: #fff !important;
+    --contexify-menu-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1) !important, 2px 4px 4px rgba(0, 0, 0, 0.1) !important, 3px 6px 6px rgba(0, 0, 0, 0.1) !important;
+    --contexify-separator-color: rgba(0, 0, 0, 0.2) !important;
+    --primary: #151515 !important;
+    --primary-hover: #202020 !important;
+    --font: "Sono", sans-serif !important;
+    --background: #151515 !important;
+    --background-textarea: #101010 !important;
+    --textarea-border: #0033ff !important;
+    --text-color: #ffffff !important;
+    --text-color-hover: #444444 !important;
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: var(--font);
+    background-color: var(--background);
+    color: var(--text-color);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: var(--background);
+    border-bottom: 2px solid var(--textarea-border);
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 24px;
+    margin-left: 10px;
+    transition: color 0.3s;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 1000;
+
+}
+
+.nav-links a:hover {
+    background-color: var(--primary-hover);
+    color: var(--text-color-hover);
+}
+
+
+
+.profile-container {
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--primary);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0 auto;/* This will make sure it takes at least the full height of the viewport */
+
+}
+
+.avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    margin: 1rem 0;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.edit-profile,
+.view-pastes-btn,
+.logout {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.edit-profile {
+    background-color: var(--primary-hover);
+    color: var(--text-color);
+}
+
+.logout {
+    background-color: #e74c3c; /* A red shade for logout */
+    color: #fff;
+}
+
+.view-pastes-btn {
+      background-color: green; /* A red shade for logout */
+    color: #fff;
+}
+
+.edit-profile:hover,
+.logout:hover {
+    background-color: var(--primary-hover);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.profile-info p {
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+}
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Pastes</title>
+    <link href="/public/pastes.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Manage Pastes</h1>
+    </div>
+
+    <div class="sidebar">
+        <ul>
+            <!-- Add navigation links here -->
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h2>All Pastes</h2>
+        <table>
+            <thead>
+    <tr>
+        <th>Name</th>
+        <th>Link</th>
+        <th>Creator</th> <!-- New column for creator's name -->
+        <th>Actions</th>
+    </tr>
+</thead>
+<tbody>
+    <% pastes.forEach(paste => { %>
+    <tr>
+        <td><%= paste.name %></td>
+        <td>
+            <a href="https://stunningannualpressespastbin.iimartin.repl.co/view/<%= paste._id %>">
+                View Paste
+            </a>
+        </td>
+        <td style="<%= paste.userId ? paste.userId.customCSS : '' %>">
+            <%= paste.userId ? paste.userId.username : 'Anonymous' %> 
+        </td>
+        <td>
+            <form action="/admin/pastes/<%= paste._id %>/delete" method="post">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </td>
+    </tr>
+    <% }); %>
+</tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2023 Admin Dashboard</p>
+    </div>
+</body>
+
+</html>

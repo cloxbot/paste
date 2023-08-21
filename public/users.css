@@ -1,0 +1,148 @@
+/* admin-style.css */
+
+body {
+    font-family: 'Roboto', sans-serif; /* Using Roboto as it's a popular modern font */
+    background-color: #fafafa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.admin-header {
+    background-color: #2E3A59; /* A deep blue for header */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-weight: 400; /* Lighter font weight */
+}
+
+.admin-header a {
+    color: #FFC542; /* A contrast color that stands out but isn't too bright */
+    text-decoration: none;
+    font-size: 0.9em;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-header a:hover {
+    background-color: #555;
+}
+
+.admin-users {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th {
+    background-color: #2E3A59; 
+    color: white;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd; /* Only bottom border for cleaner look */
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.toggle-admin-button {
+    background-color: #FFC542;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* Rounded button edges */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.toggle-admin-button:hover {
+    background-color: #FFD063;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #2E3A59;
+    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.2);
+}
+
+footer a {
+    color: #FFC542;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #FFD063;
+}
+
+
+      button[type="submit"] {
+    display: block;
+    margin: 30px auto; /* Centers the button and gives it spacing */
+    padding: 10px 30px; /* Padding around the text */
+    background-color: #2E3A59; /* Same deep blue color */
+    color: white; /* Text color */
+    font-size: 1em; /* Text size */
+    border: none; /* Removes default borders */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Changes cursor to a hand when hovering */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color transition and a slight scale effect */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+}
+
+button[type="submit"]:hover {
+    background-color: #3B4C78; /* A slightly lighter blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+button[type="submit"]:active {
+    background-color: #1D2A45; /* A darker blue for when the button is clicked */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* A smaller shadow for a pressed effect */
+    transform: scale(1); /* Reset the scale to default when pressed */
+}
+
+
+/* CSS for the Back to Dashboard button */
+
+.admin-header a {
+    display: inline-block; /* Allows for padding and other block-level styling */
+    margin-top: 10px; /* Spacing from the title */
+    padding: 10px 20px; /* Padding around the text */
+    background-color: #FFC542; /* Gold accent color */
+    color: #2E3A59; /* Deep blue for the text, to contrast with the gold background */
+    font-weight: 500; /* Slightly bold text for emphasis */
+    border-radius: 25px; /* Rounded corners for a modern look */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color transition and a slight scale effect */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+    text-align: center; /* Centered text within the button */
+    text-decoration: none; /* Removes any underline from the link */
+}
+
+.admin-header a:hover {
+    background-color: #FFD063; /* A slightly lighter gold on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+}
+
+.admin-header a:active {
+    background-color: #FFB022; /* A darker gold for when the button is clicked */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* A smaller shadow for a pressed effect */
+    transform: scale(1); /* Reset the scale to default when pressed */
+}

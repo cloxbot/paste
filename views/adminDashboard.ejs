@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="/public/admin.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome to Admin Dashboard</h1>
+    </div>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="/admin/dashboard">Dashboard</a></li>
+            <li><a href="/admin/users">Manage Users</a></li>
+            <li><a href="/admin/pastes">Manage Pastes</a></li>
+            <!-- Add more navigation links here -->
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h2>Dashboard Overview</h2>
+        <p>Welcome to the admin dashboard! Here, you can manage users and pastes.</p>
+      <div class="stats-container">
+        <div class="stat-card">
+            <h3>Total Users</h3>
+            <p><%= usersCount %></p>
+        </div>
+
+        <div class="stat-card">
+            <h3>Total Pastes</h3>
+            <p><%= pastesCount %></p>
+        </div>
+    </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2023 Admin Dashboard</p>
+    </div>
+</body>
+
+</html>

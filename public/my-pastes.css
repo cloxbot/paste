@@ -1,0 +1,64 @@
+:root {
+    --contexify-item-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeArrow-color: rgba(0, 0, 0, 0.87) !important;
+    --contexify-activeItem-bgColor: rgba(118, 1, 211, 0.04) !important;
+    --contexify-zIndex: 666;
+    --contexify-menu-minWidth: 220px !important;
+    --contexify-menu-padding: 6px !important;
+    --contexify-menu-radius: 6px !important;
+    --contexify-menu-bgColor: #fff !important;
+    --contexify-menu-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1) !important, 2px 4px 4px rgba(0, 0, 0, 0.1) !important, 3px 6px 6px rgba(0, 0, 0, 0.1) !important;
+    --contexify-separator-color: rgba(0, 0, 0, 0.2) !important;
+    --primary: #151515 !important;
+    --primary-hover: #202020 !important;
+    --font: "Sono", sans-serif !important;
+    --background: #151515 !important;
+    --background-textarea: #101010 !important;
+    --textarea-border: #0033ff !important;
+    --text-color: #ffffff !important;
+    --text-color-hover: #444444 !important;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pastelist {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pastelist thead .toprow {
+    background-color: #333;
+    color: #fff;
+}
+
+.pastelist tr {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.pastelist td, .pastelist th {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.remove-btn {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.remove-btn img {
+    width: 20px;
+}

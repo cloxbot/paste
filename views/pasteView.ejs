@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+    <title>Clox Paste</title>
+    <link href="/public/view.css" rel="stylesheet" type="text/css">
+  <link href="/public/style.css" rel="stylesheet" type="text/css">
+    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css">
+    <!-- CodeMirror Theme (Make sure you have the correct path or URL) -->
+    <link rel="stylesheet" href="path/to/codemirror/theme/monokai.css">
+    <!-- CodeMirror JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/javascript/javascript.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/theme/duotone-dark.min.css">
+
+</head>
+
+<body>
+    <div style="width: 100%;">
+        <header>
+            <a class="logo" href="/">
+                <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png">
+                <span class="logo-text">Clox Paste</span>
+              <div class="nav-links">
+                
+<% if (!isAuthenticated) { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+<% } else { %>
+    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> <!-- Check if user is an admin -->
+        <a href="/admin/dashboard">Admin Dashboard</a>
+    <% } %>
+    <% if (user) { %>
+        <a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a>
+        <a href="/logout">Logout</a>
+    <% } else { %>
+        <span class="rank">Anonymous</span>
+        <a href="/logout">Logout</a>
+    <% } %>
+<% } %>
+
+
+</div>
+            </a>
+        </header>
+        <div class="underline"></div>
+    </div>
+
+    <!-- User Profile Container -->
+    <div class="profile-container">
+       <h1>Title : <%= paste.name ? paste.name : "Untitled Paste" %></h1>
+        <div class="avatar">
+            <% if (user && user.avatar && user.avatar.data) { %>
+                <img src="data:<%= user.avatar.contentType %>;base64,<%= user.avatar.data.toString('base64') %>" alt="User Avatar">
+            <% } else { %>
+                <!-- Placeholder image for users without an avatar or anonymous users -->
+                <img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?w=740" alt="Default Avatar">
+            <% } %>
+        </div>
+          <p>Creator: 
+            <% if (user) { %>
+                <a href="/user/<%= user.username %>" style="<%= user.customCSS %>"><%= user.username %></a>
+            <% } else { %>
+                Anonymous User
+            <% } %>
+        </p>
+
+              <p>Paste Views: <%= paste.views %></p>
+   <p>Created At: <%= new Date(Date.parse(paste.createdAt)).toLocaleString() %></p>
+
+        
+        <div class="paste-link">
+  <input type="text" id="pasteLinkInput" readonly>
+  <button onclick="copyToClipboard(this.previousElementSibling.value); this.classList.add('enabled'); this.innerHTML = 'Copied'">Copy</button>
+</div>
+    </div>
+      
+
+          
+
+    <div class="wrapper">
+        <div id="editor"></div> <!-- CodeMirror container -->
+    </div>
+
+    <div class="button-container">
+        <button id="copyButton" class="button">Copy</button>
+        <button id="downloadButton" class="button">Download</button>
+    </div>
+
+    
+
+    <script>
+        const editor = CodeMirror(document.getElementById('editor'), {
+            mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
+            theme: 'duotone-dark',
+            lineNumbers: true,
+            readOnly: true
+        });
+
+        fetch(window.location.href + '/content')
+            .then(response => response.text())
+            .then(content => editor.setValue(content))
+            
+          .catch(error => console.error("Error fetching content:", error.message));
+  async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                console.log("Text successfully copied to clipboard!");
+            } catch (err) {
+                console.error("Failed to copy text: ", err);
+            }
+        }
+
+        document.getElementById('pasteLinkInput').value = window.location.href;
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const content = editor.getValue();
+            copyToClipboard(content);
+            editor.getWrapperElement().classList.add('select-animation');
+            setTimeout(() => {
+                editor.getWrapperElement().classList.remove('select-animation');
+            }, 1000);
+        });
+
+      document.getElementById('copyButton').addEventListener('click', function() {
+    const content = editor.getValue();
+    copyToClipboard(content);
+    editor.getWrapperElement().classList.add('select-animation');
+    setTimeout(() => {
+        editor.getWrapperElement().classList.remove('select-animation');
+    }, 1000);
+});
+
+
+     document.getElementById('downloadButton').addEventListener('click', function() {
+    const content = editor.getValue();
+    downloadAsTxt(content, "paste.txt");
+});
+
+function downloadAsTxt(content, filename) {
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+    </script>
+
+              <style>
+                .button-container .button:not(:last-child) {
+    margin-right: 10px;  /* Adjust the value as needed */
+}
+              </style>
+</body>
+
+</html>

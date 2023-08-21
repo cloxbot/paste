@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Users</title>
+    <link href="/public/users.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="admin-header">
+        <h1>Admin Users</h1>
+        <a href="/admin/dashboard">Back to Dashboard</a>
+    </div>
+    
+    <form action="/admin/users/updateCSS" method="post">
+        <div class="admin-users">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Admin</th>
+                        <th>Custom CSS</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td><%= user._id %></td>
+                            <td style="<%= user.customCSS %>">
+            <%= user.username %>
+                            </td>
+                            <td><%= user.email %></td>
+                            <td><%= user.isAdmin ? 'Yes' : 'No' %></td>
+                            <td>
+                                <textarea name="customCSS_<%= user._id %>" placeholder="Enter custom CSS for <%= user.username %>"><%= user.customCSS %></textarea>
+                            </td>
+                            <td>
+                                <form action="/admin/users/<%= user._id %>/toggleAdmin" method="post">
+                                    <button type="submit" class="toggle-admin-button">
+                                        Toggle Admin
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit">Save Custom CSS</button>
+    </form>
+
+    <footer>
+        <!-- ... footer content ... -->
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="public/login.css"> <!-- Ensure the path to your CSS file is correct -->
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">
+            <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png" alt="clox"> <!-- Adjust with the correct path to your logo -->
+            <span class="logo-text">Clox Paste</span>
+        </a>
+    </header>
+    <div class="wrapper">
+        <h1>Login</h1>
+        <% if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <form action="/login" method="post">
+            <div class="input-container">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button">Login</button>
+        </form>
+        <a class="register-prompt" href="/register"> Don't have an account? Click here to create one.</a>
+    </div>
+    <footer>
+       <a href="#" target="_blank" rel="noopener noreferrer"> Made with ❤️ by iiMaRTinN</a>
+    </footer>
+</body>
+</html>

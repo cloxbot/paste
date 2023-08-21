@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/signup.css">
+    <title>Edit Profile</title>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <h1>Edit Profile</h1>
+
+    <form action="/edit-profile" method="post" enctype="multipart/form-data">
+        <div class="avatar-container">
+            <% if (user.avatar && user.avatar.data) { %>
+                <img class="avatar-image" src="data:<%= user.avatar.contentType %>;base64,<%= user.avatar.data.toString('base64') %>" alt="User Avatar">
+            <% } else { %>
+                <img class="avatar-image" src="/path-to-default-avatar.png" alt="Default Avatar">
+            <% } %>
+            <div class="upload-btn-wrapper">
+    <button class="upload-button">Change Avatar</button>
+    <input type="file" id="avatar" name="avatar" accept="image/*" />
+</div>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<%= user.username %>" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%= user.email %>" required>
+        </div>
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <a href="/profile" class="register-prompt">Go back to profile</a>
+
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .wrapper {
+        background-color: #151529;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    .avatar-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .avatar-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .avatar-image:hover {
+        transform: scale(1.05);
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+      
+    }
+
+    .form-group label {
+        margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #007BFF;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .register-prompt {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #007BFF;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .register-prompt:hover {
+        color: #0056b3;
+    }
+
+  .upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.upload-button {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+</style>
+
+</body>
+</html>

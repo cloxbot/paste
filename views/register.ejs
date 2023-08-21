@@ -1,0 +1,120 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+        <head>
+          <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <link rel="stylesheet" href="public/signup.css">
+    <title>Register</title>
+</head>
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+              <a href="/" class="logo">
+            <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png" alt="clox"> <!-- Adjust with the correct path to your logo -->
+            <span class="logo-text">Clox Paste</span>
+        </a>
+        <!-- Add any other navigation links in the header if needed -->
+    </header>
+
+    <h1>Register</h1>
+    
+    <% if (error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <form action="/register" method="post">
+<div class="input-container">
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <span id="email-error" class="error-message"></span>
+    <span id="email-success" class="success-message"></span> <!-- Add this line -->
+</div>
+
+<!-- For the username -->
+<div class="input-container">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required minlength="3">
+    <span id="username-error" class="error-message"></span>
+    <span id="username-success" class="success-message"></span> <!-- Add this line -->
+</div>
+
+<div class="input-container">
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required minlength="8">
+    <span id="password-error" class="error-message"></span>
+</div>
+
+        <button type="submit" class="button">Register</button>
+    </form>
+
+    <!-- If you have a login page and want to prompt users to login if they already have an account -->
+    <a href="/login" class="register-prompt">Already have an account? Login here.</a>
+
+    <footer>
+       <a href="#" target="_blank" rel="noopener noreferrer"> Made with ❤️ by iiMaRTinN</a>
+    </footer>
+</div>
+
+    <script>
+        document.getElementById('username').addEventListener('blur', async function() {
+            const usernameError = document.getElementById('username-error');
+            const usernameSuccess = document.getElementById('username-success');
+
+            if (this.value.length < 3) {
+                usernameError.innerText = 'Username should be at least 3 characters long.';
+                usernameSuccess.innerText = '';
+            } else {
+                const response = await fetch(`/check-username?username=${this.value}`);
+                const data = await response.json();
+                if (data.exists) {
+                    usernameError.innerText = 'This username is already taken.';
+                    usernameSuccess.innerText = '';
+                } else {
+                    usernameError.innerText = '';
+                    usernameSuccess.innerText = 'Username is available!';
+                }
+            }
+        });
+
+        document.getElementById('password').addEventListener('blur', function() {
+            if (this.value.length < 8) {
+                document.getElementById('password-error').innerText = 'Password should be at least 8 characters long.';
+            } else {
+                document.getElementById('password-error').innerText = '';
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', async function() {
+            const emailError = document.getElementById('email-error');
+            const emailSuccess = document.getElementById('email-success');
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!emailRegex.test(this.value)) {
+                emailError.innerText = 'Invalid email format.';
+                emailSuccess.innerText = '';
+            } else {
+                const response = await fetch(`/check-email?email=${this.value}`);
+                const data = await response.json();
+                if (data.exists) {
+                    emailError.innerText = 'This email is already in use.';
+                    emailSuccess.innerText = '';
+                } else {
+                    emailError.innerText = '';
+                    emailSuccess.innerText = 'Email looks good!';
+                }
+            }
+        });
+
+        // You can add similar event listeners for other input fields if needed.
+    </script>
+</div>
+</body>
+</html>
