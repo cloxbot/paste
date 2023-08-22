@@ -132,9 +132,8 @@ form {
         color: #2E92F2;
         height: 40px;
         min-height: 40px;
-        min-width: 200px;
+        min-width: 300px;
         padding: 0 0 0 10px;
-        margin: 10px 5px;
         flex: 1;
         border-color: transparent;
         border-radius: 10px;
@@ -155,7 +154,7 @@ form {
     height: 41px;
     width: 1px;
     min-height: 40px;
-    min-width: 205px;
+    min-width: 295px;
     padding: 0 0 0 10px;
     margin: 10px 5px;
     flex: 1;
@@ -198,3 +197,44 @@ form {
    
 
 }
+
+
+
+.CodeMirror {
+    font-family: "Montserrat", sans-serif;;
+    cursor: text;
+    box-shadow: 0 0 var(--glow) var(--primary);
+    font-size: 15.5px;
+    resize: none;
+    width: 800px;
+    height: 500px!important;
+    margin: 0 0 25px 25px;
+    padding: 10px 5px;
+    border-color: transparent;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    
+}
+
+
+
+
+.CodeMirror-scroll {
+    overflow: scroll!important;
+    margin-bottom: -50px;
+    margin-right: -50px;
+    padding-bottom: 50px;
+    height: 100%;
+    outline: none;
+    position: relative;
+    z-index: 0;
+}
+
+
+
+
+
+
+
+
