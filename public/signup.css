@@ -78,7 +78,7 @@ header {
 
 
 .nav-links li a:hover {
-    color: #0088a9;
+    color: #2586E4;
 }
 
 
@@ -101,7 +101,7 @@ header {
     left: -50%;
     width: 380px;
     height: 420px;
-    background: linear-gradient(0deg, transparent , transparent, aqua, aqua, aqua);
+    background: linear-gradient(0deg, transparent , transparent, #2586E4, #2586E4, #2586E4);
     z-index: 1;
     transform-origin: bottom right;
     animation: animate 6s linear infinite;
@@ -131,7 +131,7 @@ header {
 
 
 .box form h2 {
-    color:aqua;
+    color:#2586E4;
     font-weight: 500;
     text-align: center;
     letter-spacing: 0.1em;
@@ -184,7 +184,7 @@ margin-top: 35px;
 .box form .inputBox input:valid ~ span,
 .box form .inputBox input:focus ~ span
 {
-    color: aqua;
+    color: #2586E4;
     font-size: 0.75em;
     transform: translateY(-34px);
 }
@@ -196,7 +196,7 @@ margin-top: 35px;
     bottom: 0;
     height: 2px;
     width: 100%;
-    background: aqua;
+    background: #2586E4;
     border-radius: 4px;
     overflow: hidden !important;
     transition: 0.5s;
@@ -231,7 +231,7 @@ margin-top: 35px;
 .box form .links a:nth-child(2)
 
 {
-    color: aqua; 
+    color: #2586E4; 
 }
 
 .box form input[type="submit"]
@@ -239,7 +239,7 @@ margin-top: 35px;
     border: none;
     outline: none;
     padding: 9px 25px;
-    background:aqua;
+    background:#2586E4;
     cursor: pointer;
     font-size: 0.9em;
     border-radius: 4px;
