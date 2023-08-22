@@ -108,13 +108,13 @@ form {
 
 .input-group {
     flex: 1; 
-    max-width: 300px; /* Adjust as necessary */
+    max-width: 350px; /* Adjust as necessary */
     
 }
 
 .editor {
     flex: 2; 
-    max-width: 600px; /* Adjust as necessary */
+    max-width: 770px; /* Adjust as necessary */
 }
 
 
