@@ -247,24 +247,21 @@ function checkAuthenticated(req, res, next) {
   // User is not authenticated, proceed to next middleware
   next();
 }
-app.get('/register', checkAuthenticated, (req, res) => {
-  
+app.get('/register', checkAuthenticated, async (req, res) => {
   const isAuthenticated = !!req.session.userId;
-    let user = null;
-    let isAdmin = false;
+  let user = null;
+  let isAdmin = false;
 
-    if (req.session.userId) {
-        user = User.findById(req.session.userId);
-        isAdmin = user && user.isAdmin;
-    }
+  if (req.session.userId) {
+      user = await User.findById(req.session.userId);  // Use await here
+      isAdmin = user && user.isAdmin;
+  }
 
-    res.render('profile', { 
-        isAdmin: isAdmin,
-        user: user,
-        isAuthenticated: isAuthenticated 
-    });
-
-  // Pass null for the error initially
+  res.render('register', {  // Change 'profile' to 'register' if you want to render the register.ejs view
+      isAdmin: isAdmin,
+      user: user,
+      isAuthenticated: isAuthenticated 
+  });
 });
 
 
