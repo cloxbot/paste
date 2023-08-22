@@ -124,12 +124,12 @@ form {
 }
 
 
-.input-group input, select, textarea {
+.input-group input, ::placeholder {
 
         background-color: #282A36;
         font-size: 15.5px;
-        font-family: var(--font);
-        color: gray;
+        font-family: "Montserrat", sans-serif;;
+        color: #2E92F2;
         height: 40px;
         min-height: 40px;
         min-width: 200px;
@@ -142,5 +142,59 @@ form {
         border-style: solid;
         outline: none;
     
+
+}
+
+
+.input-group select {
+
+    background-color: #282A36;
+    font-size: 15.5px;
+    font-family: "Montserrat", sans-serif;;
+    color: #2E92F2;
+    height: 41px;
+    width: 1px;
+    min-height: 40px;
+    min-width: 205px;
+    padding: 0 0 0 10px;
+    margin: 10px 5px;
+    flex: 1;
+    border-color: transparent;
+    border-radius: 9px;
+    border-width: 2px;
+    border-style: solid;
+    outline: none;
+
+
+}
+
+
+.input-group button {
+
+    background-color: #282A36;
+    font-size: 15.5px;
+    font-family: "Montserrat", sans-serif;;
+    color: #2E92F2;
+    height: 41px;
+    width: 1px;
+    min-height: 40px;
+    min-width: 205px;
+    padding: 0 0 0 10px;
+    margin: 10px 5px;
+    flex: 1;
+    border-color: transparent;
+    border-radius: 9px;
+    border-width: 2px;
+    border-style: solid;
+    outline: none;
+
+}
+
+
+ button:hover {
+
+    background-color: #2E92F2;
+    color: white;
+   
 
 }
