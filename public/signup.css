@@ -3,9 +3,9 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'ADLaM Display', cursive;
     margin: 0;
     padding: 0;
-
 }
 
 body {
@@ -26,7 +26,6 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
-    border-bottom: 1px solid gray;
 }
 
 
