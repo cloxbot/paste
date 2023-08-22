@@ -249,10 +249,6 @@ function checkAuthenticated(req, res, next) {
 }
 app.get('/register', checkAuthenticated, (req, res) => {
   res.render('profile', { 
-    user, 
-    pastes: userPastes,  // Send the user's pastes to the view
-    pastesCount, 
-    viewsCount, 
     isAdmin,
     isAuthenticated: !!req.session.userId 
 });
