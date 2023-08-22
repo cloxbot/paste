@@ -248,10 +248,21 @@ function checkAuthenticated(req, res, next) {
   next();
 }
 app.get('/register', checkAuthenticated, (req, res) => {
-  res.render('profile', { 
-    isAdmin,
-    isAuthenticated: !!req.session.userId 
-});
+  
+  const isAuthenticated = !!req.session.userId;
+    let user = null;
+    let isAdmin = false;
+
+    if (req.session.userId) {
+        user = User.findById(req.session.userId);
+        isAdmin = user && user.isAdmin;
+    }
+
+    res.render('profile', { 
+        isAdmin: isAdmin,
+        user: user,
+        isAuthenticated: isAuthenticated 
+    });
 
   // Pass null for the error initially
 });
