@@ -1,172 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clux Paste</title>
-    <link href="/public/style.css" rel="stylesheet" type="text/css">
-  <!-- CodeMirror CSS -->
-    <link rel="stylesheet"   href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css">
-
-<!-- CodeMirror JS -->
+    <link rel="stylesheet" href="public/newstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
-
-<link rel="stylesheet" href="path/to/codemirror/theme/monokai.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/theme/dracula.css">
+    <title>Clux Paste</title>
 </head>
-
 <body>
-        <div style="width: 100%;">
-        <header>
-            <a class="logo" href="/">
-    <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png">
-    <span class="logo-text">Clux Paste</span>
-</a>
-
-<div class="nav-links">
-<% if (!isAuthenticated) { %>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-<% } else { %>
-   <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> <!-- Check if user is an admin -->
-        <a href="/admin/dashboard">Admin Dashboard</a>
-    <% } %>
-    <a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a>
-   
-    <a href="/logout">Logout</a>
-<% } %>
-</div>
-
-
-
-            
-        </header>
-
-          <div class="banner extra">
-        <a href="https://clox.sellpass.io/"><img src="https://i.imgur.com/TrTyOmM.gif" alt="Image"></a><br><a href="https://clox.sellpass.io/"><img src="https://i.imgur.com/TrTyOmM.gif alt="Image"></a><br>    </div>
-          
+    <header>
+        <div class="logo-container">
+            <img class="logo" src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png" alt="logo">
+            <span class="logo-text">Clux Paste</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <% if (!isAuthenticated) { %>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign up</a></li>
+                <% } else { %>
+                    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> 
+                    <li><a href="/admin/dashboard">Panel</a></li>
+                    <% } %>
+                    <li><a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>   
+    <div class="banner extra">
+        <a><img src="https://i.ibb.co/HNrSfT5/a.gif" alt="Banner Image"></a></br><br><a href="https://clox.sellpass.io/"><img src="https://i.ibb.co/HNrSfT5/a.gif" alt="Banner Image"></a></br>
         <div class="underline"></div>
     </div>
-
-<div class="wrapper">
-<form id="pasteForm" method="POST" action="/create">
- 
-      
-        <input type="text" class="pasteName" name="pasteName" id="pasteName" placeholder="Paste Name">
-  <select id="languageSelector" name="language">
-    <option value="plaintext">Plain Text</option>
-    <option value="javascript">JavaScript</option>
-    <option value="python">Python</option>
-    <option value="java">Java</option>
-    <option value="php">PHP</option>
-    <option value="css">CSS</option>
-    <!-- Add more options as needed -->
-</select>
-<select name="expiration" id="expiration">
-    <option value="never">Never Expire</option>
-    <option value="10m">10 Minutes</option>
-    <option value="1h">1 Hour</option>
-    <option value="1d">1 Day</option>
-    <!-- ... add more options as needed ... -->
-</select>
-
-<!-- Password Field -->
-<input type="password" name="password" placeholder="Password (optional)">
-  
-        <div id="editor"></div> <!-- CodeMirror container -->
-        <input type="hidden" id="pasteContentInput" name="content"> <!-- Hidden input field -->
+    <div class="main-wrapper">
+        <form id="pasteForm" method="POST" action="/create">
+            <div class="input-group">
+                <input type="text" class="pasteName" name="pasteName" id="pasteName" placeholder="Paste Name">
+                <select id="languageSelector" name="language">
+                    <option value="plaintext">Plain Text</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="php">PHP</option>
+                    <option value="css">CSS</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <select name="expiration" id="expiration">
+                    <option value="never">Never Expire</option>
+                    <option value="10m">10 Minutes</option>
+                    <option value="1h">1 Hour</option>
+                    <option value="1d">1 Day</option>
+                    <!-- ... add more options as needed ... -->
+                </select>
+                <input type="password" name="password" placeholder="Password (optional)">
+                <div class="button-container">
+                    <button type="submit" class="button">Paste</button>
+                </div>
+            </div>
+            <div id="editor" class="editor"> <!-- CodeMirror container -->
+                <input type="hidden" id="pasteContentInput" name="content"> <!-- Hidden input field -->
+            </div>
+        </form>
     </div>
-    <div class="button-container">
-        <button type="submit" class="button">Paste</button>
-    </div>
-</form>
 
-</div>
-<footer>
-   <a href="https://cracked.io/iiMaRTinN" target="_blank" rel="noopener noreferrer"> Made with ❤️ by iiMaRTinN</a>
-</footer>
-<script>
-    // Initialize CodeMirror editor
-    const editor = CodeMirror(document.getElementById('editor'), {
-        value: '',
-        mode: "plaintext",
-        theme: "default",
-        lineNumbers: true
-    });
-
-    // Update the hidden input field's value before form submission
-    const pasteForm = document.getElementById('pasteForm');
-    if (pasteForm) {
-        pasteForm.addEventListener('submit', function () {
-            const pasteContentInput = document.getElementById('pasteContentInput');
-            if (editor && pasteContentInput) {
-                pasteContentInput.value = editor.getValue();
-            }
+    <script>
+        // Initialize CodeMirror editor
+        const editor = CodeMirror(document.getElementById('editor'), {
+            value: '',
+            mode: "plaintext",
+            theme: "dracula",
+            lineNumbers: true
         });
-    }
-
-
-  // Placeholder: true if the user is authenticated, false otherwise.
-// Replace this with actual logic to determine user authentication.
-const isAuthenticated = false;
-
-document.addEventListener('DOMContentLoaded', function() {
-    const loginLink = document.getElementById('loginLink');
-    const registerLink = document.getElementById('registerLink');
-    const accountLink = document.getElementById('accountLink');
-    const logoutLink = document.getElementById('logoutLink');
-
-    if (isAuthenticated) {
-        // Hide login and register links, show account and logout links
-        loginLink.style.display = 'none';
-        registerLink.style.display = 'none';
-        accountLink.style.display = 'inline';
-        logoutLink.style.display = 'inline';
-    } else {
-        // Show login and register links, hide account and logout links
-        loginLink.style.display = 'inline';
-        registerLink.style.display = 'inline';
-        accountLink.style.display = 'none';
-        logoutLink.style.display = 'none';
-    }
-});
-
-</script>
-
-  <style>
-    /* Styling for select dropdowns */
-
-/* Styling for input fields */
-/* Styling for select dropdowns and password input */
-select, input[type="password"] {
-    height: 40px;  /* Specify a consistent height */
-    padding: 10px 15px;
-    margin-bottom: 5px;
-    font-size: 16px;
-    border: 2px solid #0033ff;
-    border-radius: 5px;
-    background-color: var(--background-textarea);
-    color: var(--text-color);
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.3s;
-    width: 100%;  /* Make them take up the full width of their container */
-}
-
-select:hover, input[type="password"]:hover {
-    border-color: var(--primary-hover);
-}
-
-
-  </style>
-  
-
-
+    
+        // Update the hidden input field's value before form submission
+        const pasteForm = document.getElementById('pasteForm');
+        if (pasteForm) {
+            pasteForm.addEventListener('submit', function () {
+                const pasteContentInput = document.getElementById('pasteContentInput');
+                if (editor && pasteContentInput) {
+                    pasteContentInput.value = editor.getValue();
+                }
+            });
+        }
+    
+        // Placeholder: true if the user is authenticated, false otherwise.
+        // Ensure to replace this with actual logic to determine user authentication.
+        const isAuthenticated = false;
+    
+    </script>
 </body>
-
 </html>
