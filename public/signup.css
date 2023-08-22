@@ -1,20 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Mobtserrat:500');
+@import url('https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap');
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 body {
+    background-color: #24252a;
+}
+
+
+li, a, button {
+    font-family: "Mobtserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    border-bottom: 1px solid red;
+}
+
+
+.main-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #1c1c1c ;
-
-
-
+    min-height: 80vh;
+    padding-top: 0%;  /* This will push the content down by 15% of the viewport height */
 }
+
+.logo-container { /* New class to group the logo and the logo text */
+    display: flex;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    height: 50px;
+}
+.logo-text {
+    font-family: 'ADLaM Display', cursive;
+    font-size: 23px;
+    transition: color 0.3s;
+    color: white;
+    margin-left: 10px; /* Adjust this value to control the spacing between logo and logo text */
+}
+
+
+
+
+
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav-links li a {
+    transition: all 0.3s ease 0s;
+}
+
+
+.nav-links li a:hover {
+    color: #0088a9;
+}
+
+
 
 
 .box {

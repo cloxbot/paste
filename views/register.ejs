@@ -1,94 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" lang="en">
-    <head>
-        <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome= true"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Login </title>
-        <link rel="stylesheet" href="public/signup.css">   
-    </head>
-    <body>
-
-<div class="box">
-    <form method="post" action="/register">
-        <h2>Sign up</h2>
-        <div class="inputBox">
-            <input type="text" name="email" required>
-            <span>E-mail</span>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <dev class="logo-container">
+    <img class="logo" src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png " alt="logo">
+    <span class="logo-text">Clux Paste</span>
+    </dev>
+    <nav>
+        <ul class="nav-links">
+            <% if (!isAuthenticated) { %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <% } else { %>
+                <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> 
+                    <li><a href="/adimn/dashboard">Panel</a></li>
+                    <% } %>
+                    <li><a href="/profile"><span style= "<%= user.customCSS %>" ><%= user.username %></span></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                    <% } %>
+        </ul>
+        
+    </nav>
+    </header>   
+    <div class="main-wrapper">
+    <div class="box">
+        <form method="post" action="/register">
+            <h2>Sign up</h2>
+            <div class="inputBox">
+                <input type="text" name="email" required>
+                <span>E-mail</span>
+                <i></i>
+                </div>
+            <div class="inputBox">
+            <input type="text" name="username" required>
+            <span>Username</span>
+            <span id="username-error" class="error-message"></span>
+            <span id="username-success" class="success-message"></span>
             <i></i>
-            </div>
-        <div class="inputBox">
-        <input type="text" name="username" required>
-        <span>Username</span>
-        <span id="username-error" class="error-message"></span>
-        <span id="username-success" class="success-message"></span>
-        <i></i>
-</div>
-<div class="inputBox">
-    <input type="password" name="password" required>
-    <span>Password</span>
-    <i></i>
     </div>
-    <div class="links">
-        <a href="#"></a>
-        <a href="/login">Login</a>
+    <div class="inputBox">
+        <input type="password" name="password" required>
+        <span>Password</span>
+        <i></i>
         </div>
-        <input type="submit" value="Sign up">
-    </form>
-</div>
-    <script>
-        document.getElementById('username').addEventListener('blur', async function() {
-            const usernameError = document.getElementById('username-error');
-            const usernameSuccess = document.getElementById('username-success');
-
-            if (this.value.length < 3) {
-                usernameError.innerText = 'Username should be at least 3 characters long.';
-                usernameSuccess.innerText = '';
-            } else {
-                const response = await fetch(`/check-username?username=${this.value}`);
-                const data = await response.json();
-                if (data.exists) {
-                    usernameError.innerText = 'This username is already taken.';
-                    usernameSuccess.innerText = '';
-                } else {
-                    usernameError.innerText = '';
-                    usernameSuccess.innerText = 'Username is available!';
-                }
-            }
-        });
-
-        document.getElementById('password').addEventListener('blur', function() {
-            if (this.value.length < 8) {
-                document.getElementById('password-error').innerText = 'Password should be at least 8 characters long.';
-            } else {
-                document.getElementById('password-error').innerText = '';
-            }
-        });
-
-        document.getElementById('email').addEventListener('blur', async function() {
-            const emailError = document.getElementById('email-error');
-            const emailSuccess = document.getElementById('email-success');
-            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-            if (!emailRegex.test(this.value)) {
-                emailError.innerText = 'Invalid email format.';
-                emailSuccess.innerText = '';
-            } else {
-                const response = await fetch(`/check-email?email=${this.value}`);
-                const data = await response.json();
-                if (data.exists) {
-                    emailError.innerText = 'This email is already in use.';
-                    emailSuccess.innerText = '';
-                } else {
-                    emailError.innerText = '';
-                    emailSuccess.innerText = 'Email looks good!';
-                }
-            }
-        });
-
-        // You can add similar event listeners for other input fields if needed.
-    </script>
-
+        <div class="links">
+            <a href="#"></a>
+            <a href="/register">Login</a>
+            </div>
+            <input type="submit" value="Sign up">
+        </form>
+    </div>
+    <div class="main-wrapper"></div>
+    
 </body>
 </html>
