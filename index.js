@@ -165,7 +165,7 @@ function formatTimeUntilExpire(date) {
   const now = new Date();
   const diffInSeconds = Math.floor((date - now) / 1000);
 
-
+  if (diffInSeconds < 0) return "Never expire";
 
   const minute = 60;
   const hour = minute * 60;
