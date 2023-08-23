@@ -68,7 +68,7 @@
                     </div>
                     <div class="paste-about">
                         <h4 class="paste-info"><i class="fa-solid fa-eye"></i><div><span>Views</span> <span class="about-value"><%= paste.views %></span></div></h4>
-                        <h4 class="paste-info"><i class="fa-regular fa-clock"></i> <div><span>Expires</span> <span class="about-value">Never</span></div></h4>
+                        <h4 class="paste-info"><i class="fa-regular fa-clock"></i> <div><span>Expires</span> <span class="about-value"><%= paste.expiration === 'never' ? 'Never' : new Date(Date.parse(paste.expiration)).toLocaleString() %></span></div></h4>
                         <h4 class="paste-info"><i class="fa-solid fa-calendar-days"></i> <div><span>Created At</span> <span class="about-value"><%= new Date(Date.parse(paste.createdAt)).toLocaleString() %></span></div></h4>
                         </div>
                         <button id="copyButton" class="button">Copy</button>
