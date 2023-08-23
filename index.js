@@ -161,6 +161,31 @@ function formatTimeAgo(date) {
 }
 
 
+function formatTimeUntilExpire(Date) {
+  const now = new Date();
+  const diffInSeconds = Math.floor((date - now) / 1000);
+
+  if (diffInSeconds < 0) return "Expired";
+
+  const minute = 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+  const week = day * 7;
+  const month = day * 30; // approx.
+  const year = day * 365; // approx.
+
+  if (diffInSeconds < minute) return `Expires in ${diffInSeconds} seconds`;
+  if (diffInSeconds < hour) return `Expires in ${Math.floor(diffInSeconds / minute)} minutes`;
+  if (diffInSeconds < day) return `Expires in ${Math.floor(diffInSeconds / hour)} hours`;
+  if (diffInSeconds < week) return `Expires in ${Math.floor(diffInSeconds / day)} days`;
+  if (diffInSeconds < month) return `Expires in ${Math.floor(diffInSeconds / week)} weeks`;
+  if (diffInSeconds < year) return `Expires in ${Math.floor(diffInSeconds / month)} months`;
+  
+  return `Expires in ${Math.floor(diffInSeconds / year)} years`;
+}
+
+
+
 app.get('/view/:paste_id', async (req, res) => {
     try {
         const paste = await Paste.findById(req.params.paste_id).populate('userId');
