@@ -70,6 +70,10 @@
             <div id="editor" class="editor"> <!-- CodeMirror container -->
                 <input type="hidden" id="pasteContentInput" name="content"> <!-- Hidden input field -->
             </div>
+            <div id="popup" class="popup-hidden">
+                Please enter some content in the editor!
+            </div>
+            
         </form>
     </div>
 
@@ -129,6 +133,32 @@ languageSelector.addEventListener('change', function() {
         // Placeholder: true if the user is authenticated, false otherwise.
         // Ensure to replace this with actual logic to determine user authentication.
         const isAuthenticated = false;
+
+       
+const popup = document.getElementById('popup');
+
+if (pasteForm) {
+    pasteForm.addEventListener('submit', function (e) {
+        const pasteContentInput = document.getElementById('pasteContentInput');
+        if (editor && pasteContentInput) {
+            pasteContentInput.value = editor.getValue();
+        }
+
+        // Check if the editor is empty
+        if (!editor.getValue().trim()) {
+            e.preventDefault(); // Prevent form submission
+
+            // Show the popup
+            popup.style.display = 'block';
+
+            // Hide the popup after 3 seconds
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000);
+        }
+    });
+}
+
     
     </script>
 </body>
