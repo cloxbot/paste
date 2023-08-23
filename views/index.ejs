@@ -68,6 +68,39 @@
     </div>
 
     <script>
+        // ... your existing script ...
+
+// Listen for changes to the language selector
+const languageSelector = document.getElementById('languageSelector');
+languageSelector.addEventListener('change', function() {
+    const selectedLanguage = languageSelector.value;
+    let mode;
+
+    // Map the selected language to the appropriate CodeMirror mode
+    switch (selectedLanguage) {
+        case 'javascript':
+            mode = 'javascript';
+            break;
+        case 'python':
+            mode = 'python';
+            break;
+        case 'java':
+            mode = 'text/x-java';
+            break;
+        case 'php':
+            mode = 'application/x-httpd-php';
+            break;
+        case 'css':
+            mode = 'css';
+            break;
+        default:
+            mode = 'plaintext'; // Default mode for other options
+    }
+
+    // Set the mode in the CodeMirror editor
+    editor.setOption('mode', mode);
+});
+
         // Initialize CodeMirror editor
         const editor = CodeMirror(document.getElementById('editor'), {
             value: '',
