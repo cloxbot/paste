@@ -15,6 +15,13 @@ html, body {
     box-sizing: border-box;
 }
 
+li, a, button {
+    font-family: "Montserrat", sans-serif; /* Corrected font name */
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
 
 header {
     display: flex;
