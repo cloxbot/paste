@@ -7,12 +7,35 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/profile.css">
+    <link rel="stylesheet" href="/public/profile.css">
     <title>Profile</title>
 </head>
 
 <body>
-  <%- include('./partials/navbar', { isAuthenticated: isAuthenticated }); %>
+  <header>
+    <div class="logo-container">
+        <img class="logo" src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png" alt="logo">
+        <span class="logo-text">Clux Paste</span>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <% if (!isAuthenticated) { %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Sign up</a></li>
+            <% } else { %>
+                <li><a href="/">Home</a></li>
+                <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> 
+                    
+                <li><a href="/admin/dashboard">Panel</a></li>
+                <% } %>
+                
+                <li><a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a></li>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>   
     <div class="profile-container">
         <div class="avatar">
     <% if (user.avatar && user.avatar.data) { %>
