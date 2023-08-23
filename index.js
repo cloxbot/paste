@@ -400,21 +400,28 @@ app.get('/login', checkAuthenticated, (req, res) => {
 
 
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const usernameLowercase = req.body.username.toLowerCase();
+  const password = req.body.password;
 
   try {
-    const user = await User.findOne({ username });
-    if (user && await bcrypt.compare(password, user.password)) {
-      req.session.userId = user._id; // Store user ID in the session
-      res.redirect('/');
-    } else {
-      res.render('login', { error: 'Invalid username or password' });
-    }
+      // Find user by the lowercase version of the username
+      const user = await User.findOne({ usernameLowercase });
+      
+      if (user && await bcrypt.compare(password, user.password)) {
+          req.session.userId = user._id;
+          res.redirect('/');
+      } else {
+          res.render('login', { error: 'Invalid username or password' });
+      }
   } catch (error) {
-    console.error(error);
-    res.render('login', { error: 'Error logging in' });
+      console.error(error);
+      res.render('login', { error: 'Error logging in' });
   }
 });
+
+
+
+
 
 // index.js
 // ... (previous code)
