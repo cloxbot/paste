@@ -161,7 +161,7 @@ function formatTimeAgo(date) {
 }
 
 
-function formatTimeUntilExpire(Date) {
+function formatTimeUntilExpire(date) {
   const now = new Date();
   const diffInSeconds = Math.floor((date - now) / 1000);
 
