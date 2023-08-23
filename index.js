@@ -313,6 +313,7 @@ app.get('/register', checkAuthenticated, async (req, res) => {
 
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
+  const usernameLowercase = username.toLowerCase();
 
   // Validate password length
   if (password.length < 8) {
@@ -326,24 +327,24 @@ app.post('/register', async (req, res) => {
 
   try {
     // Check if username or email already exists in the database
-    const userWithSameUsername = await User.findOne({ username });
+    const userWithSameUsername = await User.findOne({ usernameLowercase });
     const userWithSameEmail = await User.findOne({ email });
 
     if (userWithSameUsername) {
-      return res.render('register', { error: 'Username is already taken.' });
+        return res.render('register', { error: 'Username is already taken.' });
     }
     if (userWithSameEmail) {
       return res.render('register', { error: 'Email is already registered.' });
     }
 
-    const user = new User({ username, email, password });
-    await user.save();
-    req.session.userId = user._id;
-    res.redirect('/');
-  } catch (error) {
-    console.error(error);
-    res.render('register', { error: 'Error registering user' });
-  }
+    const user = new User({ username, usernameLowercase, email, password });
+        await user.save();
+        req.session.userId = user._id;
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.render('register', { error: 'Error registering user' });
+    }
 });
 
 
