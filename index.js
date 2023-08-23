@@ -96,7 +96,7 @@ const createPasteLimiter = rateLimit({
 
 
 app.post('/create', createPasteLimiter, async (req, res) => {
-    const name = req.body.pasteName || "Untitled"; // If no title is provided, default to "Untitled"
+    const name = req.body.pasteName || "Untitled Paste"; // If no title is provided, default to "Untitled"
     const content = req.body.content;
     const language = req.body.language || "plaintext"; // Set a default language if none is provided
 
@@ -794,7 +794,7 @@ app.use('/api/', authenticateAPI);  // Apply authentication to all API routes
 // Create Paste
 // Create Paste
 app.post('/api/paste', async (req, res) => {
-    const name = req.body.pasteName || "Untitled"; 
+    const name = req.body.pasteName || "Untitled Paste"; 
     const content = req.body.content;
     const language = req.body.language || "plaintext"; 
 
