@@ -1,105 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  
-
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
-    <title>Clox Paste</title>
-    <link href="/public/view.css" rel="stylesheet" type="text/css">
-  <link href="/public/style.css" rel="stylesheet" type="text/css">
-    <!-- CodeMirror CSS -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.css">
-    <!-- CodeMirror Theme (Make sure you have the correct path or URL) -->
-    <link rel="stylesheet" href="path/to/codemirror/theme/monokai.css">
-    <!-- CodeMirror JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/mode/javascript/javascript.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/theme/duotone-dark.min.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.3/codemirror.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.56.0/theme/dracula.css">
+    <title>Clux Paste</title>
 </head>
-
 <body>
-    <div style="width: 100%;">
-        <header>
-            <a class="logo" href="/">
-                <img src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png">
-                <span class="logo-text">Clox Paste</span>
-              <div class="nav-links">
-                
-<% if (!isAuthenticated) { %>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-<% } else { %>
-    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> <!-- Check if user is an admin -->
-        <a href="/admin/dashboard">Admin Dashboard</a>
-    <% } %>
-    <% if (user) { %>
-        <a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a>
-        <a href="/logout">Logout</a>
-    <% } else { %>
-        <span class="rank">Anonymous</span>
-        <a href="/logout">Logout</a>
-    <% } %>
-<% } %>
-
-
-</div>
-            </a>
-        </header>
+    <header>
+        <div class="logo-container">
+            <img class="logo" src="https://cdn.discordapp.com/attachments/1142466081064243300/1142811423425175672/removal.ai_7e641675-cceb-4fc4-a6fc-c175263e36f2-png-transparent-letter-c-art-logo-c-letter-letter-c-blue-angle-english_1.png" alt="logo">
+            <span class="logo-text">Clux Paste</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <% if (!isAuthenticated) { %>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Sign up</a></li>
+                <% } else { %>
+                    <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> 
+                    <li><a href="/admin/dashboard">Panel</a></li>
+                    <% } %>
+                    <li><a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>   
+    <div class="banner extra">
+        <a><img src="https://i.ibb.co/HNrSfT5/a.gif" alt="Banner Image"></a></br><br><a href="https://clox.sellpass.io/"><img src="https://i.ibb.co/HNrSfT5/a.gif" alt="Banner Image"></a></br>
         <div class="underline"></div>
     </div>
+    <div class="title">
 
-    <!-- User Profile Container -->
-    <div class="profile-container">
-       <h1>Title : <%= paste.name ? paste.name : "Untitled Paste" %></h1>
-        <div class="avatar">
-            <% if (user && user.avatar && user.avatar.data) { %>
+    <h1>pastebin</h1>
+</div>
+
+    <div class="main-wrapper">
+                    <div class="input-group">
+                        <div class = "paste-name">
+                        
+                    </div>
+                    <div class="cerator">
+                        <h2><% if (user) { %>
+                <a href="/user/<%= user.username %>" style="<%= user.customCSS %>"><%= user.username %></a>
+            <% } else { %>
+                Anonymous User
+            <% } %></h2>
+                    </div>
+                    <div class="avatar">
+       <!-- Placeholder image for users without an avatar or anonymous users -->
+                                       <% if (user && user.avatar && user.avatar.data) { %>
                 <img src="data:<%= user.avatar.contentType %>;base64,<%= user.avatar.data.toString('base64') %>" alt="User Avatar">
             <% } else { %>
                 <!-- Placeholder image for users without an avatar or anonymous users -->
                 <img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?w=740" alt="Default Avatar">
             <% } %>
-        </div>
-          <p>Creator: 
-            <% if (user) { %>
-                <a href="/user/<%= user.username %>" style="<%= user.customCSS %>"><%= user.username %></a>
-            <% } else { %>
-                Anonymous User
-            <% } %>
-        </p>
-
-              <p>Paste Views: <%= paste.views %></p>
-   <p>Created At: <%= new Date(Date.parse(paste.createdAt)).toLocaleString() %></p>
-
-        
-        <div class="paste-link">
-  <input type="text" id="pasteLinkInput" readonly>
-  <button onclick="copyToClipboard(this.previousElementSibling.value); this.classList.add('enabled'); this.innerHTML = 'Copied'">Copy</button>
-</div>
-    </div>
-      
-
+                    </div>
+                    <div class="paste-about">
+                        <h4 class="paste-info"><i class="fa-solid fa-eye"></i><div><span>Views</span> <span class="about-value"><%= paste.views %></span></div></h4>
+                        <h4 class="paste-info"><i class="fa-regular fa-clock"></i> <div><span>Expires</span> <span class="about-value">Never</span></div></h4>
+                        <h4 class="paste-info"><i class="fa-solid fa-calendar-days"></i> <div><span>Created</span> <span class="about-value"><%= new Date(Date.parse(paste.createdAt)).toLocaleString() %></span></div></h4>
+                        </div>
+                        <button id="copyButton" class="button">Copy</button>
+                        <button id="downloadButton" class="button">Download</button>
+                    </div>
+                    <div id="editor" class="editor"></div> <!-- CodeMirror container -->
+                </div>
+            </div>
           
-
-    <div class="wrapper">
-        <div id="editor"></div> <!-- CodeMirror container -->
+        </form>
     </div>
-
-    <div class="button-container">
-        <button id="copyButton" class="button">Copy</button>
-        <button id="downloadButton" class="button">Download</button>
-    </div>
-
-    
 
     <script>
         const editor = CodeMirror(document.getElementById('editor'), {
             mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
-            theme: 'duotone-dark',
+            theme: 'dracula',
             lineNumbers: true,
             readOnly: true
         });
@@ -158,11 +139,5 @@ function downloadAsTxt(content, filename) {
 
     </script>
 
-              <style>
-                .button-container .button:not(:last-child) {
-    margin-right: 10px;  /* Adjust the value as needed */
-}
-              </style>
 </body>
-
 </html>
