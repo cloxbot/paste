@@ -139,7 +139,26 @@ app.post('/create', createPasteLimiter, async (req, res) => {
     }
 });
 
+function formatTimeAgo(date) {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
 
+  const minute = 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+  const week = day * 7;
+  const month = day * 30; // approx.
+  const year = day * 365; // approx.
+
+  if (diffInSeconds < minute) return `${diffInSeconds} seconds ago`;
+  if (diffInSeconds < hour) return `${Math.floor(diffInSeconds / minute)} minutes ago`;
+  if (diffInSeconds < day) return `${Math.floor(diffInSeconds / hour)} hours ago`;
+  if (diffInSeconds < week) return `${Math.floor(diffInSeconds / day)} days ago`;
+  if (diffInSeconds < month) return `${Math.floor(diffInSeconds / week)} weeks ago`;
+  if (diffInSeconds < year) return `${Math.floor(diffInSeconds / month)} months ago`;
+  
+  return `${Math.floor(diffInSeconds / year)} years ago`;
+}
 
 
 app.get('/view/:paste_id', async (req, res) => {
@@ -180,7 +199,7 @@ app.get('/view/:paste_id', async (req, res) => {
             const isAuthenticated = Boolean(req.session.userId);
 
             // Render the paste view with both the paste and user details
-            res.render('pasteView', { paste, user, isAuthenticated });
+            res.render('pasteView', { paste, user, isAuthenticated ,formatTimeAgo});
         } else {
             res.status(404).render('404');
         }
@@ -628,26 +647,7 @@ app.get('/user/:username', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-function formatTimeAgo(date) {
-    const now = new Date();
-    const diffInSeconds = Math.floor((now - date) / 1000);
 
-    const minute = 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const week = day * 7;
-    const month = day * 30; // approx.
-    const year = day * 365; // approx.
-
-    if (diffInSeconds < minute) return `${diffInSeconds} seconds ago`;
-    if (diffInSeconds < hour) return `${Math.floor(diffInSeconds / minute)} minutes ago`;
-    if (diffInSeconds < day) return `${Math.floor(diffInSeconds / hour)} hours ago`;
-    if (diffInSeconds < week) return `${Math.floor(diffInSeconds / day)} days ago`;
-    if (diffInSeconds < month) return `${Math.floor(diffInSeconds / week)} weeks ago`;
-    if (diffInSeconds < year) return `${Math.floor(diffInSeconds / month)} months ago`;
-    
-    return `${Math.floor(diffInSeconds / year)} years ago`;
-}
 
 
 app.get('/my-pastes', isAuthenticated, async (req, res) => {
