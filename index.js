@@ -927,6 +927,18 @@ app.get('/robots.txt', (req, res) => {
 });
 
 
+
+app.get('/logout', function(req, res) {
+  req.session.destroy(function(err) {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Internal server error");
+    }
+    res.redirect('/');
+  });
+});
+
+
 // ... All your routes and other middlewares above ...
 
 // Handle 404 - this middleware should be placed at the end
@@ -955,14 +967,5 @@ app.use((req, res) => {
 
 
 // Logout route to destroy the session
-app.get('/logout', function(req, res) {
-  req.session.destroy(function(err) {
-    if (err) {
-      console.error("Error destroying session:", err);
-      return res.status(500).send("Internal server error");
-    }
-    res.redirect('/');
-  });
-});
 
 
