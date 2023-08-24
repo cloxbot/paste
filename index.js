@@ -203,29 +203,27 @@ app.get('/view/:paste_id', async (req, res) => {
 
             // Check for password protection
            
-                  if (paste.password) {
-                    if (req.query.password !== paste.password) {
-                        let isAdmin = false;
-                        const userIdFromSession = req.session.userId;
-                        if (userIdFromSession) {
-                            const userFromSession = await User.findById(userIdFromSession);
-                            if (userFromSession && userFromSession.isAdmin) {
-                                isAdmin = true;
-                            }
-                        }
-  
-
-                    // If password is not provided or incorrect, render a password input form
-                    return res.render('passwordInput', { 
+            if (paste.password) {
+              if (!req.session[`paste_access_${paste._id}`]) {
+                  let isAdmin = false;
+                  const userIdFromSession = req.session.userId;
+                  if (userIdFromSession) {
+                      const userFromSession = await User.findById(userIdFromSession);
+                      if (userFromSession && userFromSession.isAdmin) {
+                          isAdmin = true;
+                      }
+                  }
+            
+                  // If password is not provided or incorrect, render a password input form
+                  return res.render('passwordInput', { 
                       pasteId: req.params.paste_id,
                       isAuthenticated: !!userIdFromSession,
                       isAdmin: isAdmin,
                       userIdFromPaste,
                       currentUser: req.currentUser
                   });
-                  
-                }
-            }
+              }
+          }
 
             // Determine the identifier (user ID or session ID)
             const identifier = req.session.userId || req.sessionID;
