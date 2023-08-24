@@ -37,6 +37,7 @@ db.once('open', () => {
 
 
 const app = express();
+app.use(isAuthenticated);
 
 app.use('/public', express.static('public'));
 
