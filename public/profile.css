@@ -74,16 +74,34 @@ header {
 
     background-color: #282A36;
     margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 400px;
     box-shadow: 0 0 var(--glow) var(--primary);
     border-color: transparent;
     border-radius: 10px;
     border-width: 2px;
     border-style: solid;
     width: 350px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-container h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .avatar img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -93,42 +111,13 @@ header {
 
 h1 {
     margin: 1rem 0;
+    color: white;
 }
 
-.actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
 
-.edit-profile,
-.view-pastes-btn,
-.logout {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
 
-.edit-profile {
-    background-color: var(--primary-hover);
-    color: var(--text-color);
-}
 
-.logout {
-    background-color: #e74c3c; /* A red shade for logout */
-    color: #fff;
-}
 
-.view-pastes-btn {
-      background-color: green; /* A red shade for logout */
-    color: #fff;
-}
-
-.edit-profile:hover,
-.logout:hover {
-    background-color: var(--primary-hover);
-}
 
 .profile-info {
     display: flex;
@@ -157,7 +146,7 @@ h1 {
     border-width: 2px;
     border-style: solid;
     margin: 4px 0;
-    box-shadow: 0 0 5px #24252a;
+    box-shadow: 0 0 5px #2D85DB;
     padding: 5px 4px;
     color: white;
 }
@@ -204,3 +193,58 @@ h1 {
 
 
 
+
+.hehe-container {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center !important;
+}
+
+button {
+    background-color: #282A36;
+    font-size: 15.5px;
+    font-family: "Montserrat", sans-serif;;
+    color: #2E92F2;
+    height: 41px;
+    width: 1px;
+    min-height: 40px;
+    min-width: 320px;
+    padding: 0 0 0 10px;
+    margin: 10px 5px;
+    flex: 1;
+    border-color: #2E92F2;
+    border-radius: 9px;
+    border-width: 2px;
+    border-style: solid;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-container {
+    background-color: #282A36;
+    margin-top: 340px;
+    margin-right: 400px;
+    
+    box-shadow: 0 0 var(--glow) var(--primary);
+    border-color: transparent;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    width: 335px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+
+    background-color: #2E92F2;
+    color: white;
+   
+
+}

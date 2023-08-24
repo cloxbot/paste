@@ -36,37 +36,52 @@
         </ul>
     </nav>
 </header>   
+<div class="hehe-container">
     <div class="profile-container">
         <div class="avatar">
-    <% if (user.avatar && user.avatar.data) { %>
-        <img src="data:<%= user.avatar.contentType %>;base64,<%= user.avatar.data.toString('base64') %>" alt="User Avatar">
-    <% } else { %>
-        <!-- You can put a default or placeholder image here -->
-        <img src="/path-to-default-avatar.png" alt="Default Avatar">
-    <% } %>
+            <% if (user.avatar && user.avatar.data) { %>
+                <img src="data:<%= user.avatar.contentType %>;base64,<%= user.avatar.data.toString('base64') %>" alt="User Avatar">
+            <% } else { %>
+                <!-- You can put a default or placeholder image here -->
+                <img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?w=740" alt="Default Avatar">
+            <% } %>
 </div>
 
-        <h1 style="<%= user.customCSS %>"><%= user.username %></h1>
-        <p>Email: <%= user.email %></p>
-        <div class="actions">
-            <a href="/edit-profile" class="edit-profile">Edit Profile</a>
-            <a href="/logout" class="logout">Logout</a>
-          <!-- Somewhere appropriate in the profile template -->
-            <a href="/my-pastes" class="view-pastes-btn">View My Pastes</a>
-
-        </div>
-      
+<h1 style="<%= user.customCSS %>"><%= user.username %></h1>
+ 
 
     <div class="paste-about">
+        <h4 class="paste-info"><i class="fa-solid fa-eye"></i><div><span>E-Mail</span> <span class="about-value"><%= user.email %></span></div></h4>
         <h4 class="paste-info"><i class="fa-solid fa-eye"></i><div><span>Paste Count</span> <span class="about-value"><%= pastesCount %></span></div></h4>
         <h4 class="paste-info"><i class="fa-regular fa-clock"></i> <div><span> Total Views</span> <span class="about-value"><%= viewsCount %></span></div></h4>
         </div>
       
 
 </div>
+
+<div class="buttons-container">
+    <form action="/edit-profile">
+        <button href="/edit-profile" class="edit-profile">Edit Profile</button>
+    </form>
+    <form action="/logout">
+        <button href="/logout" class="logout">Logout</button>
+    </form>
+        
+    <form action="/my-pastes">
+        <button href="/edit-profile" class="<button href="/my-pastes" class="view-pastes-btn">View My Pastes</button>
+    </form>
+        
+        
+       
+
+    </div>
+  
+  
+
 </div>
 
 
+</div>
 
     
 </body>
