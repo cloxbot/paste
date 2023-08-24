@@ -931,3 +931,7 @@ app.use((req, res) => {
 
 
 
+app.get('/test-session', (req, res) => {
+  res.send(`Session userId: ${req.session.userId}`);
+});
+
