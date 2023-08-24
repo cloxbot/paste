@@ -907,6 +907,9 @@ app.set('trust proxy', 1);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'));
 
+app.get('/test-session', (req, res) => {
+  res.send(`Session userId: ${req.session.userId}`);
+});
 
 
 // ... All your routes and other middlewares above ...
@@ -931,7 +934,6 @@ app.use((req, res) => {
 
 
 
-app.get('/test-session', (req, res) => {
-  res.send(`Session userId: ${req.session.userId}`);
-});
+// Place this near the top of your routes, before any catch-all or 404 handlers.
+
 
