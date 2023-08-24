@@ -37,7 +37,7 @@ db.once('open', () => {
 
 
 const app = express();
-app.use(isAuthenticated);
+
 
 app.use('/public', express.static('public'));
 
@@ -51,6 +51,8 @@ app.use(session({
     mongoUrl: 'mongodb+srv://cloxbot:XbtZayZVJMP6oqMm@cluster0.wpxew.mongodb.net/?retryWrites=true&w=majority'
   })
 }));
+
+app.use(isAuthenticated);
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
