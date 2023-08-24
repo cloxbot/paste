@@ -92,6 +92,31 @@
             readOnly: true
         });
 
+        
+            const editorElement = document.getElementById('editor');
+        
+            const editor = CodeMirror(editorElement, {
+                mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
+                theme: 'dracula',
+                lineNumbers: true,
+                readOnly: true
+            });
+        
+            function setEditorContent(content) {
+                if (editor && editor.setValue) {
+                    editor.setValue(content);
+                } else {
+                    console.error("CodeMirror editor not initialized properly. Retrying in 500ms.");
+                    setTimeout(() => setEditorContent(content), 500);
+                }
+            }
+        
+            fetch(window.location.href + '/content')
+                .then(response => response.text())
+                .then(setEditorContent)
+                .catch(error => console.error("Error fetching content:", error.message));
+        
+
         fetch(window.location.href + '/content')
             .then(response => response.text())
             .then(content => editor.setValue(content))
