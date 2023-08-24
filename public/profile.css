@@ -71,20 +71,16 @@ header {
 
 
 .profile-container {
-    width: 90%;
-    max-width: 500px;
-    background-color: var(--primary);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0 auto;/* This will make sure it takes at least the full height of the viewport */
 
+    background-color: #282A36;
+    margin-top: 50px;
+    margin-left: 50px;
+    box-shadow: 0 0 var(--glow) var(--primary);
+    border-color: transparent;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    width: 350px;
 }
 
 .avatar img {
@@ -145,4 +141,66 @@ h1 {
     font-size: 16px;
     margin-bottom: 0.5rem;
 }
+
+
+
+.paste-about .paste-info {
+    display: flex!important;
+    min-width: 0!important;
+    width: auto!important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;;
+    border-width: 2px;
+    border-style: solid;
+    margin: 4px 0;
+    box-shadow: 0 0 5px #24252a;
+    padding: 5px 4px;
+    color: white;
+}
+
+
+.paste-about {
+    margin: 25px 5px 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    font-family: "Montserrat", sans-serif;;
+}
+
+
+.paste-value {
+    margin: 5px 0;
+    font-family: "Montserrat", sans-serif;;
+}
+
+
+.paste-about {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;;
+}
+
+.paste-about span:first-child {
+    width: 100%;
+}
+
+
+.paste-info > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;;
+    justify-content: center;
+}
+
+
+.paste-info > div > span {
+    width: 400px; 
+    text-align: center;
+}
+
+
 
