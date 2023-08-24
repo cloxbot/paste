@@ -221,7 +221,7 @@ app.get('/view/:paste_id', async (req, res) => {
                       isAuthenticated: !!userIdFromSession,
                       isAdmin: isAdmin,
                       userIdFromPaste,
-                      currentUser
+                      currentUser: req.currentUser
                   });
                   
                 }
