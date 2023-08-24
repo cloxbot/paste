@@ -1,12 +1,17 @@
 // middleware.js
 module.exports = {
-    isAuthenticated: (req, res, next) => {
+    isAuthenticated: async (req, res, next) => {
         if (req.session.userId) {
-            req.isAuthenticated = true;  // Add a flag indicating authentication
-            next();
+            try {
+                req.currentUser = await User.findById(req.session.userId);
+                req.isAuthenticated = true;
+                next();
+            } catch (error) {
+                console.error("Error fetching user:", error.message);
+                next(error);
+            }
         } else {
-            res.redirect("/")
-            req.isAuthenticated = false; // Add a flag indicating no authentication
+            req.isAuthenticated = false;
             next();
         }
     }
