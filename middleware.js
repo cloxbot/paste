@@ -11,7 +11,7 @@ module.exports = {
                 req.currentUser = await User.findById(req.session.userId);
                 
                 if (req.currentUser) {
-                    console.log("User fetched:", req.currentUser);
+                    console.log("User fetched:");
                 } else {
                     console.error("No user found with ID:", req.session.userId);
                 }
