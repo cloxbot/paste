@@ -917,15 +917,14 @@ app.get('/test-session', (req, res) => {
 });
 
 
-app.get('/sitemap.yml', (req, res) => {
-  res.sendFile(path.join(__dirname, 'sitemap.yml', 'sitemap.yml'));
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sitemap.xml'));
 });
 
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.sendFile(path.join(__dirname, 'robots.txt', 'robots.txt'));
+  res.sendFile(path.join(__dirname, 'robots.txt'));
 });
-
 
 
 // ... All your routes and other middlewares above ...
