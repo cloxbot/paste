@@ -189,7 +189,8 @@ function formatTimeUntilExpire(date) {
 app.get('/view/:paste_id', async (req, res) => {
     try {
          const paste = await Paste.findById(req.params.paste_id).populate('userId');
-         const user = paste.userId;
+         const userIdFromPaste = paste.userId;
+
         if (paste) {
             // Check for expiration
             if (paste.expiration && paste.expiration < new Date()) {
@@ -216,7 +217,7 @@ app.get('/view/:paste_id', async (req, res) => {
                       pasteId: req.params.paste_id,
                       isAuthenticated: !!userIdFromSession,
                       isAdmin: isAdmin,
-                      user
+                      userIdFromPaste
                   });
                   
                 }
