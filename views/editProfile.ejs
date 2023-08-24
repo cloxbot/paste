@@ -17,11 +17,20 @@
     </div>
     <nav>
         <ul class="nav-links">
-            
+            <% if (!isAuthenticated) { %>
+            <li><a href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Sign up</a></li>
+            <% } else { %>
                 <li><a href="/">Home</a></li>
+                <% if (typeof isAdmin !== 'undefined' && isAdmin) { %> 
+                    
+                <li><a href="/admin/dashboard">Panel</a></li>
+                <% } %>
+                
                 <li><a href="/profile"><span class="rank" style="<%= user.customCSS %>"><%= user.username %></span></a></li>
                 <li><a href="/logout">Logout</a></li>
-
+            <% } %>
         </ul>
     </nav>
 </header>   
@@ -61,11 +70,25 @@
     body {
         font-family: "Montserrat", sans-serif;
         background-color: #24252A;
-        display: flex;
+        display: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
     }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+    body, .wrapper {
+        margin: 0;
+        padding: 0;
+    }
+    .wrapper {
+        margin: auto;
+    }
+    
     li, a, button {
         font-family: "Montserrat", sans-serif; /* Corrected font name */
         font-weight: 500;
@@ -192,7 +215,8 @@
         
     }
     .aha {
-        margin-left: 85px;
+        margin-left: 40px;
+        width: 420px;
     }
 
     button:hover {
@@ -228,15 +252,17 @@
 }
 
 .upload-button {
-    border: 2px solid gray;
-    color: gray;
-    background-color: white;
+
+    color: white;
+    background-color: #007BFF;
     padding: 8px 20px;
     border-radius: 8px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 }
+
+
 
 lable {
     color: white;
