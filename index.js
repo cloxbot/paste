@@ -267,17 +267,23 @@ setInterval(async () => {
 
 
 app.post('/view/:paste_id/verify-password', async (req, res) => {
-    const paste = await Paste.findById(req.params.paste_id);
+  const paste = await Paste.findById(req.params.paste_id);
+  
+  console.log("Fetched paste in verify-password route:", paste);
 
-    if (req.body.password === paste.password) {
-      req.session[`paste_access_${paste._id}`] = true;
-      console.log('Session variable set for paste:', paste._id);
+  if (paste && req.body.password === paste.password) {
+      const sessionVarName = `paste_access_${paste._id}`;
+      req.session[sessionVarName] = true;
+      
+      console.log("Setting session variable:", sessionVarName, "with value:", req.session[sessionVarName]);
+
       return res.redirect(`/view/${paste._id}`);
   }
 
   // Handle incorrect password, e.g., show an error message
   return res.render('passwordPrompt', { error: 'Incorrect password' });
 });
+
 
 
 app.get('/view/:paste_id/content', async (req, res) => {
