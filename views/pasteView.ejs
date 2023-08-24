@@ -85,12 +85,7 @@
     </div>
 
     <script>
-        const editor = CodeMirror(document.getElementById('editor'), {
-            mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
-            theme: 'dracula',
-            lineNumbers: true,
-            readOnly: true
-        });
+
 
         
             const editorElement = document.getElementById('editor');
