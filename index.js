@@ -278,6 +278,13 @@ app.get('/view/:paste_id/content', async (req, res) => {
   try {
     const paste = await Paste.findById(req.params.paste_id);
     if (paste) {
+      // Check if the paste is password-protected
+      if (paste.password) {
+        // Check if the session variable for access is set
+        if (!req.session[`paste_access_${paste._id}`]) {
+          return res.status(403).send('Access denied. Please provide the correct password.');
+        }
+      }
       res.send(paste.content);
     } else {
       res.status(404).render('404');
@@ -287,6 +294,7 @@ app.get('/view/:paste_id/content', async (req, res) => {
     res.status(500).send('Error fetching paste content');
   }
 });
+
 
 app.get('/view/:paste_id/name', async (req, res) => {
   try {
