@@ -919,11 +919,11 @@ app.get('/test-session', (req, res) => {
 
 
 app.get('/sitemap.xml', (req, res) => {
-  res.sendFile(path.join(__dirname, './sitemap.xml', 'sitemap.xml'));
+  res.render("sitemap.xml")
 });
 
 app.get('/robots.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, './robot.txt', 'robots.txt'));
+  res.render("robots.txt")
 });
 
 
