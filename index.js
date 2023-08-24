@@ -243,6 +243,7 @@ app.get('/view/:paste_id', async (req, res) => {
             const isAuthenticated = Boolean(req.session.userId);
 
             // Render the paste view with both the paste and user details
+            console.log("Current User:", req.currentUser);
             res.render('pasteView', { paste, user, isAuthenticated, currentUser: req.currentUser, formatTimeAgo, formatTimeUntilExpire });
 
         } else {
