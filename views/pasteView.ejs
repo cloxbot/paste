@@ -87,55 +87,40 @@
     <script>
 
 
+       
+            document.addEventListener('DOMContentLoaded', () => {
+                const editorElement = document.getElementById('editor');
         
-            const editorElement = document.getElementById('editor');
-        
-            const editor = CodeMirror(editorElement, {
-                mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
-                theme: 'dracula',
-                lineNumbers: true,
-                readOnly: true
-            });
-        
-            function setEditorContent(content) {
-                if (editor && editor.setValue) {
-                    editor.setValue(content);
-                } else {
-                    console.error("CodeMirror editor not initialized properly. Retrying in 500ms.");
-                    setTimeout(() => setEditorContent(content), 500);
+                if (!editorElement) {
+                    console.error("Editor element not found in DOM!");
+                    return;
                 }
-            }
         
-            fetch(window.location.href + '/content')
-                .then(response => response.text())
-                .then(setEditorContent)
-                .catch(error => console.error("Error fetching content:", error.message));
+                const editor = CodeMirror(editorElement, {
+                    mode: '<%= paste.language %>' === 'plaintext' ? null : '<%= paste.language %>',
+                    theme: 'dracula',
+                    lineNumbers: true,
+                    readOnly: true
+                });
+        
+                function setEditorContent(content) {
+                    if (editor && editor.setValue) {
+                        editor.setValue(content);
+                    } else {
+                        console.error("CodeMirror editor not initialized properly. Retrying in 500ms.");
+                        setTimeout(() => setEditorContent(content), 500);
+                    }
+                }
+        
+                fetch(window.location.href + '/content')
+                    .then(response => response.text())
+                    .then(setEditorContent)
+                    .catch(error => console.error("Error fetching content:", error.message));
+            });
+      
         
 
-        fetch(window.location.href + '/content')
-            .then(response => response.text())
-            .then(content => editor.setValue(content))
-            
-          .catch(error => console.error("Error fetching content:", error.message));
-  async function copyToClipboard(text) {
-            try {
-                await navigator.clipboard.writeText(text);
-                console.log("Text successfully copied to clipboard!");
-            } catch (err) {
-                console.error("Failed to copy text: ", err);
-            }
-        }
-
-        document.getElementById('pasteLinkInput').value = window.location.href;
-
-        document.getElementById('copyButton').addEventListener('click', function() {
-            const content = editor.getValue();
-            copyToClipboard(content);
-            editor.getWrapperElement().classList.add('select-animation');
-            setTimeout(() => {
-                editor.getWrapperElement().classList.remove('select-animation');
-            }, 1000);
-        });
+    
 
       document.getElementById('copyButton').addEventListener('click', function() {
     const content = editor.getValue();
@@ -147,22 +132,6 @@
 });
 
 
-     document.getElementById('downloadButton').addEventListener('click', function() {
-    const content = editor.getValue();
-    downloadAsTxt(content, "paste.txt");
-});
-
-function downloadAsTxt(content, filename) {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-}
 
     </script>
 
