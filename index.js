@@ -190,20 +190,20 @@ function formatTimeUntilExpire(date) {
 
 
 app.get('/view/:paste_id', async (req, res) => {
-    try {
-         const paste = await Paste.findById(req.params.paste_id).populate('userId');
-         const userIdFromPaste = paste.userId;
+  try {
+      const paste = await Paste.findById(req.params.paste_id).populate('userId');
+      console.log('Checking session for paste:', req.session[`paste_access_${paste._id}`]);
+      const userIdFromPaste = paste.userId;
 
-        if (paste) {
-            // Check for expiration
-            if (paste.expiration && paste.expiration < new Date()) {
-                await Paste.findByIdAndDelete(req.params.paste_id);
-                return res.status(410).send('This paste has expired and has been deleted.');
-            }
+      if (paste) {
+          // Check for expiration
+          if (paste.expiration && paste.expiration < new Date()) {
+              await Paste.findByIdAndDelete(req.params.paste_id);
+              return res.status(410).send('This paste has expired and has been deleted.');
+          }
 
-            // Check for password protection
-           
-            if (paste.password) {
+          // Check for password protection
+          if (paste.password) {
               if (!req.session[`paste_access_${paste._id}`]) {
                   let isAdmin = false;
                   const userIdFromSession = req.session.userId;
@@ -213,7 +213,7 @@ app.get('/view/:paste_id', async (req, res) => {
                           isAdmin = true;
                       }
                   }
-            
+
                   // If password is not provided or incorrect, render a password input form
                   return res.render('passwordInput', { 
                       pasteId: req.params.paste_id,
@@ -225,37 +225,38 @@ app.get('/view/:paste_id', async (req, res) => {
               }
           }
 
-            // Determine the identifier (user ID or session ID)
-            const identifier = req.session.userId || req.sessionID;
+          // Determine the identifier (user ID or session ID)
+          const identifier = req.session.userId || req.sessionID;
 
-            // Hash the identifier
-            const hash = crypto.createHash('sha256').update(identifier).digest('hex');
+          // Hash the identifier
+          const hash = crypto.createHash('sha256').update(identifier).digest('hex');
 
-            // Check if this hashed identifier has viewed the paste before
-            if (!paste.viewedBySessions.includes(hash)) {
-                // Increment view count and store the hash
-                paste.views += 1;
-                paste.viewedBySessions.push(hash);
-                await paste.save();
-            }
+          // Check if this hashed identifier has viewed the paste before
+          if (!paste.viewedBySessions.includes(hash)) {
+              // Increment view count and store the hash
+              paste.views += 1;
+              paste.viewedBySessions.push(hash);
+              await paste.save();
+          }
 
-            const user = paste.userId; // This will now be the full user object since we populated it
+          const user = paste.userId; // This will now be the full user object since we populated it
 
-            // Determine if user is authenticated
-            const isAuthenticated = Boolean(req.session.userId);
+          // Determine if user is authenticated
+          const isAuthenticated = Boolean(req.session.userId);
 
-            // Render the paste view with both the paste and user details
-            console.log("Current User:", req.currentUser);
-            res.render('pasteView', { paste, user, isAuthenticated, currentUser: req.currentUser, formatTimeAgo, formatTimeUntilExpire });
+          // Render the paste view with both the paste and user details
+          console.log("Current User:", req.currentUser);
+          res.render('pasteView', { paste, user, isAuthenticated, currentUser: req.currentUser, formatTimeAgo, formatTimeUntilExpire });
 
-        } else {
-            res.status(404).render('404');
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('404');
-    }
+      } else {
+          res.status(404).render('404');
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).render('404');
+  }
 });
+
 
 
 setInterval(async () => {
@@ -269,12 +270,13 @@ app.post('/view/:paste_id/verify-password', async (req, res) => {
     const paste = await Paste.findById(req.params.paste_id);
 
     if (req.body.password === paste.password) {
-        req.session[`paste_access_${paste._id}`] = true;
-        return res.redirect(`/view/${paste._id}`);
-    }
+      req.session[`paste_access_${paste._id}`] = true;
+      console.log('Session variable set for paste:', paste._id);
+      return res.redirect(`/view/${paste._id}`);
+  }
 
-    // Handle incorrect password, e.g., show an error message
-    return res.render('passwordPrompt', { error: 'Incorrect password' });
+  // Handle incorrect password, e.g., show an error message
+  return res.render('passwordPrompt', { error: 'Incorrect password' });
 });
 
 
