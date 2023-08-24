@@ -1,49 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link href="/public/admin.css" rel="stylesheet" type="text/css">
+    <!-- Black Dashboard's CSS and other meta tags go here -->
+   <!--   Core JS Files   -->
+<script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chartist JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/black-dashboard.js?v=1.0.0" type="text/javascript"></script>
 </head>
-
 <body>
-    <div class="header">
-        <h1>Welcome to Admin Dashboard</h1>
-    </div>
-
-    <div class="sidebar">
-        <ul>
-            <li><a href="/admin/dashboard">Dashboard</a></li>
-            <li><a href="/admin/users">Manage Users</a></li>
-            <li><a href="/admin/pastes">Manage Pastes</a></li>
-            <!-- Add more navigation links here -->
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <h2>Dashboard Overview</h2>
-        <p>Welcome to the admin dashboard! Here, you can manage users and pastes.</p>
-      <div class="stats-container">
-        <div class="stat-card">
-            <h3>Total Users</h3>
-            <p><%= usersCount %></p>
+    <div class="wrapper">
+        <div class="sidebar">
+            <!-- Black Dashboard's sidebar content goes here -->
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/pastes">Manage Pastes</a></li>
+                <li><a href="/admin/users">Manage Users</a></li>
+                <!-- Add other links as necessary -->
+            </ul>
         </div>
-
-        <div class="stat-card">
-            <h3>Total Pastes</h3>
-            <p><%= pastesCount %></p>
+        <div class="main-panel">
+            <!-- Black Dashboard's main content goes here -->
+            <h1>Welcome to Admin Dashboard</h1>
+            
+            <!-- Previous Content -->
+            <div class="content-section">
+                <!-- Add previous content here -->
+            </div>
+            
+            <!-- Website Analysis -->
+            <div class="analysis-section">
+                <h2>Website Analysis</h2>
+                
+                <!-- Website Traffic Overview -->
+                <div class="traffic-overview">
+                    <h3>Traffic Overview</h3>
+                    <p>Total Visits: [Placeholder]</p>
+                    <p>Unique Visitors: [Placeholder]</p>
+                    <p>Bounce Rate: [Placeholder]</p>
+                </div>
+                
+                <!-- User Behavior Chart -->
+                <div class="user-behavior">
+                    <h3>User Behavior</h3>
+                    <!-- Placeholder for chart -->
+                    <img src="path_to_chart_placeholder_image" alt="User Behavior Chart">
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <!-- Placeholder for recent activity table/list -->
+                    <ul>
+                        <li>New user registration: [Username]</li>
+                        <li>New paste created: [Paste Title]</li>
+                        <!-- Add other recent activities -->
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
 
-    <div class="footer">
-        <p>&copy; 2023 Admin Dashboard</p>
-    </div>
+    <!-- Black Dashboard's JS scripts go at the bottom -->
+    <script src="./assets/js/core/jquery.min.js"></script>
+    <script src="./assets/js/core/bootstrap.min.js"></script>
+    <script src="./assets/js/black-dashboard.min.js"></script>
+    <!-- Add other JS scripts as necessary -->
 </body>
-
 </html>
