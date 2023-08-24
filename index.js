@@ -917,6 +917,17 @@ app.get('/test-session', (req, res) => {
 });
 
 
+
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, './sitemap.xml', 'sitemap.xml'));
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, './robot.txt', 'robots.txt'));
+});
+
+
+
 // ... All your routes and other middlewares above ...
 
 // Handle 404 - this middleware should be placed at the end
@@ -956,10 +967,3 @@ app.get('/logout', function(req, res) {
 });
 
 
-app.get('/sitemap.xml', (req, res) => {
-  res.sendFile(path.join(__dirname, './sitemap.xml', 'sitemap.xml'));
-});
-
-app.get('/robots.txt', (req, res) => {
-  res.sendFile(path.join(__dirname, './robot.txt', 'robots.txt'));
-});
