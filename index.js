@@ -917,13 +917,13 @@ app.get('/test-session', (req, res) => {
 });
 
 
-
-app.get('/sitemap.xml', (req, res) => {
-  res.render("sitemap.xml")
+app.get('/sitemap.yml', (req, res) => {
+  res.sendFile(path.join(__dirname, 'sitemap.yml', 'sitemap.yml'));
 });
 
 app.get('/robots.txt', (req, res) => {
-  res.render("robots.txt")
+  res.type('text/plain');
+  res.sendFile(path.join(__dirname, 'robots.txt', 'robots.txt'));
 });
 
 
