@@ -276,24 +276,35 @@ app.post('/view/:paste_id/verify-password', async (req, res) => {
 
 app.get('/view/:paste_id/content', async (req, res) => {
   try {
+    console.log('Fetching content for paste:', req.params.paste_id);
+
     const paste = await Paste.findById(req.params.paste_id);
     if (paste) {
+      console.log('Found paste:', paste._id);
+
       // Check if the paste is password-protected
       if (paste.password) {
+        console.log('Paste is password-protected');
+
         // Check if the session variable for access is set
         if (!req.session[`paste_access_${paste._id}`]) {
+          console.log('Access denied due to missing or incorrect session variable');
           return res.status(403).send('Access denied. Please provide the correct password.');
         }
       }
+
+      console.log('Sending paste content');
       res.send(paste.content);
     } else {
+      console.log('Paste not found');
       res.status(404).render('404');
     }
   } catch (error) {
-    console.error(error);
+    console.error('Error encountered:', error.message);
     res.status(500).send('Error fetching paste content');
   }
 });
+
 
 
 app.get('/view/:paste_id/name', async (req, res) => {
