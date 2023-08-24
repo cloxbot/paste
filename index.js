@@ -197,22 +197,23 @@ app.get('/view/:paste_id', async (req, res) => {
             }
 
             // Check for password protection
-            if (paste.password) {
-                if (req.query.password !== paste.password) {
-                  let isAdmin = false;
-                  const userId = req.session.userId;
-                  if (userId) {
-                      const user = await User.findById(userId);
-                      if (user && user.isAdmin) {
-                          isAdmin = true;
-                      }
-                  }
+           
+                  if (paste.password) {
+                    if (req.query.password !== paste.password) {
+                        let isAdmin = false;
+                        const userIdFromSession = req.session.userId;
+                        if (userIdFromSession) {
+                            const userFromSession = await User.findById(userIdFromSession);
+                            if (userFromSession && userFromSession.isAdmin) {
+                                isAdmin = true;
+                            }
+                        }
   
 
                     // If password is not provided or incorrect, render a password input form
                     return res.render('passwordInput', { 
                       pasteId: req.params.paste_id,
-                      isAuthenticated: !!userId,
+                      isAuthenticated: !!userIdFromSession,
                       isAdmin: isAdmin
                   });
                   
