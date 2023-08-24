@@ -220,7 +220,8 @@ app.get('/view/:paste_id', async (req, res) => {
                       pasteId: req.params.paste_id,
                       isAuthenticated: !!userIdFromSession,
                       isAdmin: isAdmin,
-                      userIdFromPaste
+                      userIdFromPaste,
+                      currentUser
                   });
                   
                 }
