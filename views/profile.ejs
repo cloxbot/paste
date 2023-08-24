@@ -55,9 +55,14 @@
             <a href="/my-pastes" class="view-pastes-btn">View My Pastes</a>
 
         </div>
-      <div class="profile-info">
-    <p><strong>Pastes:</strong> <%= pastesCount %></p>
-    <p><strong>Total Views:</strong> <%= viewsCount %></p>
+      
+
+    <div class="paste-about">
+        <h4 class="paste-info"><i class="fa-solid fa-eye"></i><div><span>Paste Count</span> <span class="about-value"><%= pastesCount %></span></div></h4>
+        <h4 class="paste-info"><i class="fa-regular fa-clock"></i> <div><span> Total Views</span> <span class="about-value"><%= viewsCount %></span></div></h4>
+        </div>
+      
+
 </div>
 </div>
 
