@@ -453,7 +453,15 @@ app.post('/login', async (req, res) => {
       
       if (user && await bcrypt.compare(password, user.password)) {
           req.session.userId = user._id;
-          res.redirect('/');
+          
+    // Regenerate session after successful login
+    req.session.regenerate(function(err) {
+        if(err) {
+            console.error("Error regenerating session:", err);
+            return res.status(500).send("Internal server error");
+        }
+    });
+    res.redirect('/');
       } else {
           res.render('login', { error: 'Invalid username or password' });
       }
@@ -471,14 +479,7 @@ app.post('/login', async (req, res) => {
 // ... (previous code)
 
 // Logout route
-app.get('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      console.error(err);
-    }
-    res.redirect('/login');
-  });
-});
+
 
 // Middleware to check if the user is an admin
 async function checkAdmin(req, res, next) {
@@ -941,3 +942,15 @@ app.use((req, res) => {
 // Place this near the top of your routes, before any catch-all or 404 handlers.
 
 
+
+
+// Logout route to destroy the session
+app.get('/logout', function(req, res) {
+  req.session.destroy(function(err) {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Internal server error");
+    }
+    res.redirect('/');
+  });
+});
