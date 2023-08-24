@@ -1,0 +1,21 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://clux.xyz/</loc>
+<lastmod>2023-08-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://clux.xyz/login</loc>
+<lastmod>2023-08-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://clux.xyz/register</loc>
+<lastmod>2023-08-24</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<!--  Add more URLs as needed  -->
+</urlset>

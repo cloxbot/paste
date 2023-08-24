@@ -954,3 +954,12 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
   });
 });
+
+
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, './sitemap.xml', 'sitemap.xml'));
+});
+
+app.get('/robots.txt', (req, res) => {
+  res.sendFile(path.join(__dirname, './robot.txt', 'robots.txt'));
+});
