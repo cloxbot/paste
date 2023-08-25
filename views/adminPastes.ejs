@@ -128,12 +128,12 @@
                 </tr>
             </thead>
             <tbody>
-                
+                <% let count = 1 %>
                 <% pastes.forEach(paste => { %>
-                    <% let count = 1%>
+                    
                     
                 <tr>
-                    <td class="text-center"><% count += 1%></td>
+                    <td class="text-center"><%= count +=1 %></td>
                     <td><%= paste.name %></td>
                     <td><a href="/view/<%= paste._id %>">View Paste</a></td>
                     <td style="<%= paste.userId ? paste.userId.customCSS : '' %>"><%= paste.userId ? paste.userId.username : 'Anonymous' %></td>
