@@ -534,10 +534,12 @@ app.get('/admin/pastes', checkAdmin, async (req, res) => {
 
   user = await User.findById(userId);
   try {
-   
+    const page = parseInt(req.query.page) || 1;  // Get current page number from query parameter
+    const limit = 10;  // Number of pastes per page
+    const skip = (page - 1) * limit;  // Number of records to skip for current page
 
     // Fetch a subset of pastes based on pagination and populate user details
-    const pastes = await Paste.find().populate('userId').skip(skip).limit(limit);
+    const pastes = await Paste.find().populate('userId');
 
     // Fetch total count of pastes
     const totalPastes = await Paste.countDocuments();
