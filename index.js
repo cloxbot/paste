@@ -504,13 +504,19 @@ async function checkAdmin(req, res, next) {
 
 // Apply the middleware to admin routes
 app.get('/admin/dashboard', checkAdmin, async (req, res) => {
+  const userId = req.session.userId;
+  let user = null; // Initialize user as null
+
+ 
+  user = await User.findById(userId);
     try {
         const usersCount = await User.countDocuments();
         const pastesCount = await Paste.countDocuments();
 
         res.render('adminDashboard', { 
             usersCount: usersCount, 
-            pastesCount: pastesCount 
+            pastesCount: pastesCount ,
+            user
         });
     } catch (err) {
         console.error(err);
