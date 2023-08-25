@@ -70,6 +70,17 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Page navigation example">
+                      <ul class="pagination justify-content-center">
+                        <% for(let i = 1; i <= Math.ceil(totalPastes / 10); i++) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                            </li>
+                        <% } %>
+                      </ul>
+                    </nav>
                 </div>
             </div>
 

@@ -529,13 +529,25 @@ app.get('/admin/dashboard', checkAdmin, async (req, res) => {
 // Display a list of all pastes in the admin dashboard
 app.get('/admin/pastes', checkAdmin, async (req, res) => {
   try {
-    const pastes = await Paste.find().populate('userId'); // Fetch all pastes and populate user details
-    res.render('adminPastes', { pastes }); 
+    const page = parseInt(req.query.page) || 1;  // Get current page number from query parameter
+    const limit = 10;  // Number of pastes per page
+    const skip = (page - 1) * limit;  // Number of records to skip for current page
+
+    // Fetch a subset of pastes based on pagination and populate user details
+    const pastes = await Paste.find().populate('userId').skip(skip).limit(limit);
+
+    // Fetch total count of pastes
+    const totalPastes = await Paste.countDocuments();
+
+    // Render the EJS template with pastes and the total count
+    res.render('adminPastes', { pastes, totalPastes }); 
+
   } catch (error) {
     console.error(error);
     res.status(500).send('Error fetching pastes');
   }
 });
+
 
 app.get('/admin/users', checkAdmin, async (req, res) => {
   try {
