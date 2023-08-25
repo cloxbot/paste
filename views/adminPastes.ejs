@@ -110,56 +110,79 @@
               </nav>
             </div>
 
+
+
+
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                <div class="col-md-12">
-                    <h2>All Pastes</h2>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-primary">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Link</th>
-                                    <th>Creator</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% pastes.forEach(paste => { %>
-                                <tr>
-                                    <td><%= paste.name %></td>
-                                    <td>
-                                        <a href="/view/<%= paste._id %>">
-                                            View Paste
-                                        </a>
-                                    </td>
-                                    <td style="<%= paste.userId ? paste.userId.customCSS : '' %>">
-                                        <%= paste.userId ? paste.userId.username : 'Anonymous' %> 
-                                    </td>
-                                    <td>
-                                        <form action="/admin/pastes/<%= paste._id %>/delete" method="post">
-                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                <% }); %>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Pagination Controls -->
-                    <nav aria-label="Page navigation example">
-                      <ul class="pagination justify-content-center">
-                        <% for(let i = 1; i <= Math.ceil(totalPastes / 10); i++) { %>
-                            <li class="page-item">
-                                <a class="page-link" href="?page=<%= i %>"><%= i %></a>
-                            </li>
-                        <% } %>
-                      </ul>
-                    </nav>
-                </div>
-            </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Name</th>
+                                <th>Job Position</th>
+                                <th>Since</th>
+                                <th class="text-right">Salary</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td>Andrew Mike</td>
+                                <td>Develop</td>
+                                <td>2013</td>
+                                <td class="text-right">&euro; 99,225</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-icon">
+                                        <i class="tim-icons icon-settings"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon">
+                                        <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">2</td>
+                                <td>John Doe</td>
+                                <td>Design</td>
+                                <td>2012</td>
+                                <td class="text-right">&euro; 89,241</td>
+                                <td class="td-actions text-right">
+                                  <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
+                                      <i class="tim-icons icon-single-02"></i>
+                                  </button>
+                                  <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                                      <i class="tim-icons icon-settings"></i>
+                                  </button>
+                                  <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
+                                      <i class="tim-icons icon-simple-remove"></i>
+                                  </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">3</td>
+                                <td>Alex Mike</td>
+                                <td>Design</td>
+                                <td>2010</td>
+                                <td class="text-right">&euro; 92,144</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-link btn-icon btn-sm">
+                                        <i class="tim-icons icon-single-02"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-success btn-link btn-icon btn-sm">
+                                        <i class="tim-icons icon-settings"></i>
+                                    </button>
+                                    <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm">
+                                        <i class="tim-icons icon-simple-remove"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
             <!-- Footer -->
             <footer class="footer">
@@ -169,9 +192,9 @@
             </footer>
         </div>
         </div>
-        </div>
-    </div>
 
+
+      
     <!-- Adding required JS for Black Dashboard -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
