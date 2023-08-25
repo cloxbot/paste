@@ -2,63 +2,91 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
-
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Pastes</title>
-    <link href="/public/pastes.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/black-dashboard/1.0.1/css/black-dashboard.min.css" rel="stylesheet" />
+    <link rel="icon" href="public/uploads/avatar-1692572078209-427297268.png" type="image/png" sizes="16x16">
 </head>
 
 <body>
-    <div class="header">
-        <h1>Manage Pastes</h1>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="#" class="simple-text logo-mini">
+                        MP
+                    </a>
+                    <a href="#" class="simple-text logo-normal">
+                        Manage Pastes
+                    </a>
+                </div>
+                <ul class="nav">
+                    <!-- Add navigation links here -->
+                </ul>
+            </div>
+        </div>
+        <!-- End of Sidebar -->
+
+        <!-- Main content -->
+        <div class="main-panel">
+            <div class="navbar navbar-expand-lg navbar-absolute">
+                <h1 class="navbar-brand">Manage Pastes</h1>
+            </div>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <h2>All Pastes</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Link</th>
+                                    <th>Creator</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% pastes.forEach(paste => { %>
+                                <tr>
+                                    <td><%= paste.name %></td>
+                                    <td>
+                                        <a href="/view/<%= paste._id %>">
+                                            View Paste
+                                        </a>
+                                    </td>
+                                    <td style="<%= paste.userId ? paste.userId.customCSS : '' %>">
+                                        <%= paste.userId ? paste.userId.username : 'Anonymous' %> 
+                                    </td>
+                                    <td>
+                                        <form action="/admin/pastes/<%= paste._id %>/delete" method="post">
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p>&copy; 2023 Admin Dashboard</p>
+                </div>
+            </footer>
+        </div>
     </div>
 
-    <div class="sidebar">
-        <ul>
-            <!-- Add navigation links here -->
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <h2>All Pastes</h2>
-        <table>
-            <thead>
-    <tr>
-        <th>Name</th>
-        <th>Link</th>
-        <th>Creator</th> <!-- New column for creator's name -->
-        <th>Actions</th>
-    </tr>
-</thead>
-<tbody>
-    <% pastes.forEach(paste => { %>
-    <tr>
-        <td><%= paste.name %></td>
-        <td>
-            <a href="/view/<%= paste._id %>">
-                View Paste
-            </a>
-        </td>
-        <td style="<%= paste.userId ? paste.userId.customCSS : '' %>">
-            <%= paste.userId ? paste.userId.username : 'Anonymous' %> 
-        </td>
-        <td>
-            <form action="/admin/pastes/<%= paste._id %>/delete" method="post">
-                <button type="submit" class="delete-button">Delete</button>
-            </form>
-        </td>
-    </tr>
-    <% }); %>
-</tbody>
-        </table>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2023 Admin Dashboard</p>
-    </div>
+    <!-- Adding required JS for Black Dashboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/black-dashboard/1.0.1/js/black-dashboard.min.js"></script>
 </body>
 
 </html>
