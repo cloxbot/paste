@@ -40,6 +40,7 @@ const app = express();
 
 
 app.use('/public', express.static('public'));
+app.use('/public/assets', express.static('assets'));
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
