@@ -530,12 +530,11 @@ app.get('/admin/dashboard', checkAdmin, async (req, res) => {
 app.get('/admin/pastes', checkAdmin, async (req, res) => {
   const userId = req.session.userId;
   let user = null; // Initialize user as null
+  const count = 0;
 
   user = await User.findById(userId);
   try {
-    const page = parseInt(req.query.page) || 1;  // Get current page number from query parameter
-    const limit = 10;  // Number of pastes per page
-    const skip = (page - 1) * limit;  // Number of records to skip for current page
+   
 
     // Fetch a subset of pastes based on pagination and populate user details
     const pastes = await Paste.find().populate('userId').skip(skip).limit(limit);
@@ -544,7 +543,7 @@ app.get('/admin/pastes', checkAdmin, async (req, res) => {
     const totalPastes = await Paste.countDocuments();
 
     // Render the EJS template with pastes and the total count
-    res.render('adminPastes', { pastes, totalPastes, user }); 
+    res.render('adminPastes', { pastes, totalPastes, user,count }); 
 
   } catch (error) {
     console.error(error);
