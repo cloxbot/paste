@@ -528,6 +528,10 @@ app.get('/admin/dashboard', checkAdmin, async (req, res) => {
 
 // Display a list of all pastes in the admin dashboard
 app.get('/admin/pastes', checkAdmin, async (req, res) => {
+  const userId = req.session.userId;
+  let user = null; // Initialize user as null
+
+  user = await User.findById(userId);
   try {
     const page = parseInt(req.query.page) || 1;  // Get current page number from query parameter
     const limit = 10;  // Number of pastes per page
@@ -540,7 +544,7 @@ app.get('/admin/pastes', checkAdmin, async (req, res) => {
     const totalPastes = await Paste.countDocuments();
 
     // Render the EJS template with pastes and the total count
-    res.render('adminPastes', { pastes, totalPastes }); 
+    res.render('adminPastes', { pastes, totalPastes, user }); 
 
   } catch (error) {
     console.error(error);
@@ -550,9 +554,13 @@ app.get('/admin/pastes', checkAdmin, async (req, res) => {
 
 
 app.get('/admin/users', checkAdmin, async (req, res) => {
+  const userId = req.session.userId;
+  let user = null; // Initialize user as null
+
+  user = await User.findById(userId);
   try {
     const users = await User.find();
-    res.render('adminUsers', { users });
+    res.render('adminUsers', { users, user });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error fetching users');
