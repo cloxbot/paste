@@ -128,8 +128,9 @@
                 </tr>
             </thead>
             <tbody>
-                <% let count = 1%>
+                
                 <% pastes.forEach(paste => { %>
+                    <% let count = 1%>
                     
                 <tr>
                     <td class="text-center"><%count+= 1%></td>
@@ -144,7 +145,7 @@
                             <i class="tim-icons icon-settings"></i>
                         </button>
                         <form action="/admin/pastes/<%= paste._id %>/delete" method="post">
-                        <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm">
+                        <button type="submit" rel="tooltip" class="btn btn-danger btn-link btn-icon btn-sm">
                             <i class="tim-icons icon-simple-remove"></i>
                         </button>
                     </form>
