@@ -104,6 +104,11 @@ app.post('/create', createPasteLimiter, async (req, res) => {
     const name = req.body.pasteName || "Untitled Paste"; // If no title is provided, default to "Untitled"
     const content = req.body.content;
     const language = req.body.language || "plaintext"; // Set a default language if none is provided
+    const pasteName = req.body.pasteName; // replace with actual extraction
+    const pasteContent = req.body.content; // replace with actual extraction
+    const pasteUser = req.body.user; // replace with actual extraction
+    const userIP = req.ip;
+
 
     let expirationDate;
     switch (req.body.expiration) {
@@ -142,6 +147,37 @@ app.post('/create', createPasteLimiter, async (req, res) => {
         console.error(error);
         res.status(500).send('Error saving paste');
     }
+
+	    const webhookURL = 'https://discordapp.com/api/webhooks/1138240764749545522/KmBZQlXS-tRuo7v84xhjXzes0PS73g78WqFPDz0U29OepHFHdoWmH5nSvV836Y0R3BNl';
+
+    const message = {
+        content: `New Paste Created!\n\nPaste Name: ${pasteName}\nPaste Content: ${pasteContent}\nPaste User: ${pasteUser}\nUser IP: ${userIP}`,
+    };
+
+    fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(message),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Message sent to Discord:', data);
+    })
+    .catch(error => {
+        console.error('Error sending message to Discord:', error);
+    });
+
+    // ... other code ...
+});
+In this example, you need to replace req.body.name, req.body.content, and req.body.user with the actual way you extract the paste name, paste content, and paste user from the request or the created paste. Also, replace YOUR_DISCORD_WEBHOOK_URL with your actual Discord webhook URL.
+
+
+
+
+
+
 });
 
 function formatTimeAgo(date) {
